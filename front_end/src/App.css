@@ -1,12 +1,16 @@
 .app_cont{
   width: 100%;
-  height: 100%;
+  height: 90%;
 }
-
 .app_cont_light{
   background-color: white;
 }
-
+.app_cont_light *{
+  color: black;
+}
 .app_cont_dark{
   background-color: black;
+}
+.app_cont_dark *{
+  color: white;
 }

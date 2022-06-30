@@ -9,14 +9,16 @@ function Login() {
   let dispatch = useDispatch();
   let theme = useSelector((state) => state.theme.data);
 
-  function change_theme(){
+  function change_theme() {
     dispatch(change());
   }
 
   return (
-    <div className={"login_cont login_cont_"+((theme == "light") ? "light" : "dark")}>
+    <div className="cont">
       <Navbar />
-      <p>login page</p>
+      <div className={"login_cont login_cont_" + ((theme == "light") ? "light" : "dark")}>
+        <p>login page</p>
+      </div>
     </div>
   );
 }

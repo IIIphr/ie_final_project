@@ -19,7 +19,7 @@ function Navbar() {
   return (
     <div className={class_name("navbar")}>
       <Link to="/">TOROB</Link>
-      <p>all products</p>
+      <Link to="/products_loader">all products</Link>
       <div className={class_name("categories_cont")}>
         <p>categories</p>
         <div className={class_name("categories_drop")}>
