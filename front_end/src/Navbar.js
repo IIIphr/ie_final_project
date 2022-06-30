@@ -12,9 +12,22 @@ function Navbar() {
     dispatch(change());
   }
 
+  function class_name(name){
+    return name + " " + name + "_" + theme;
+  }
+
   return (
-    <div className={"navbar navbar_"+((theme == "light") ? "light" : "dark")}>
-      <p>navbar</p>
+    <div className={class_name("navbar")}>
+      <Link to="/">TOROB</Link>
+      <p>all products</p>
+      <div className={class_name("categories_cont")}>
+        <p>categories</p>
+        <div className={class_name("categories_drop")}>
+            <p>test</p>
+            <p>test_2</p>
+        </div>
+      </div>
+      <Link to="/login">login</Link>
       <button onClick={change_theme}>change theme</button>
     </div>
   );

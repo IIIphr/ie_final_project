@@ -17,7 +17,6 @@ function Login() {
     <div className={"login_cont login_cont_"+((theme == "light") ? "light" : "dark")}>
       <Navbar />
       <p>login page</p>
-      <Link to="/">main menu</Link>
     </div>
   );
 }

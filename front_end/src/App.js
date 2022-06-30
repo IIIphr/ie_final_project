@@ -17,7 +17,6 @@ function App() {
     <div className={"app_cont app_cont_"+((theme == "light") ? "light" : "dark")}>
       <Navbar />
       <p>main page</p>
-      <Link to="/login">log in</Link>
     </div>
   );
 }
