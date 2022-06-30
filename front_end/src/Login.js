@@ -13,10 +13,14 @@ function Login() {
     dispatch(change());
   }
 
+  function class_name(name) {
+    return name + " " + name + "_" + theme;
+  }
+
   return (
     <div className="cont">
       <Navbar />
-      <div className={"login_cont login_cont_" + ((theme == "light") ? "light" : "dark")}>
+      <div className={class_name("login_cont")}>
         <p>login page</p>
       </div>
     </div>
