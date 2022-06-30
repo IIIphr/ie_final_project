@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import Login from './Login';
 import Products_loader from './Products_loader';
 import Products from './Products';
+import User from './User';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
         <Route path="/login" element={<Login />} />
         <Route path="/products_loader" element={<Products_loader />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/user" element={<User />} />
       </Routes>
     </BrowserRouter>
   </Provider>

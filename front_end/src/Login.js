@@ -1,15 +1,24 @@
 import './Login.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { change_id, change_type } from './userSlice';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from './Navbar';
 
 function Login() {
 
   let dispatch = useDispatch();
+  let navigate = useNavigate();
   let theme = useSelector((state) => state.theme.data);
   let [input_id, setInputId] = useState('');
   let [input_type, setInputType] = useState('');
+  let current_user_id = useSelector((state) => state.user.user_id);
+
+  useEffect(() => {
+    if (current_user_id != -1){
+      navigate("/user");
+    }
+  }, []);
 
   function class_name(name) {
     return name + " " + name + "_" + theme;

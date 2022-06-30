@@ -23,7 +23,7 @@ function Navbar() {
       return (<Link to="/login">login</Link>);
     }
     else{
-      return (<Link to="/login">welcome, {current_user_id}</Link>);
+      return (<Link to="/user">welcome, {current_user_id}</Link>);
     }
   }
 
