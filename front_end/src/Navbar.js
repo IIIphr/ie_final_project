@@ -1,10 +1,9 @@
-import './App.css';
+import './Navbar.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import { change } from './themeSlice';
-import Navbar from './Navbar';
 
-function App() {
+function Navbar() {
 
   let dispatch = useDispatch();
   let theme = useSelector((state) => state.theme.data);
@@ -14,12 +13,11 @@ function App() {
   }
 
   return (
-    <div className={"app_cont app_cont_"+((theme == "light") ? "light" : "dark")}>
-      <Navbar />
-      <p>main page</p>
-      <Link to="/login">log in</Link>
+    <div className={"navbar navbar_"+((theme == "light") ? "light" : "dark")}>
+      <p>navbar</p>
+      <button onClick={change_theme}>change theme</button>
     </div>
   );
 }
 
-export default App;
+export default Navbar;

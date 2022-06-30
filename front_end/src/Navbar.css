@@ -1,0 +1,19 @@
+.navbar{
+    width: 100%;
+    height: 10%;
+    display: grid;
+}
+
+.navbar_light{
+    background-color: black;
+}
+.navbar_light p{
+    color: white;
+}
+
+.navbar_dark{
+    background-color: white;
+}
+.navbar_dark p{
+    color: black;
+}

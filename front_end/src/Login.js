@@ -1,10 +1,10 @@
-import './App.css';
+import './Login.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import { change } from './themeSlice';
 import Navbar from './Navbar';
 
-function App() {
+function Login() {
 
   let dispatch = useDispatch();
   let theme = useSelector((state) => state.theme.data);
@@ -14,12 +14,12 @@ function App() {
   }
 
   return (
-    <div className={"app_cont app_cont_"+((theme == "light") ? "light" : "dark")}>
+    <div className={"login_cont login_cont_"+((theme == "light") ? "light" : "dark")}>
       <Navbar />
-      <p>main page</p>
-      <Link to="/login">log in</Link>
+      <p>login page</p>
+      <Link to="/">main menu</Link>
     </div>
   );
 }
 
-export default App;
+export default Login;
