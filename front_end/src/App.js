@@ -1,21 +1,14 @@
 import './App.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from "react-router-dom";
-import { change } from './themeSlice';
+import { useSelector } from 'react-redux';
 import Navbar from './Navbar';
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 function App() {
 
-  let dispatch = useDispatch();
   let theme = useSelector((state) => state.theme.data);
   let navigate = useNavigate();
   let [input, setInput] = useState('');
-
-  function change_theme() {
-    dispatch(change());
-  }
 
   function class_name(name) {
     return name + " " + name + "_" + theme;
