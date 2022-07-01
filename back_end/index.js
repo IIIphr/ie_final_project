@@ -19,7 +19,7 @@ const SellerSchema= new mongoose.Schema({
     username:String,
     mobile:Number,
     name:String,
-    products:[Number]
+    shops:[Number]
 });
 const ProductSchema= new mongoose.Schema({
     name:String,
@@ -33,9 +33,20 @@ const ProductSchema= new mongoose.Schema({
     size:String,
     sellers:[Number]
 });
+const ShopSchema=new mongoose.Schema({
+    name:String,
+    products:[Number]
+});
+const ReportSchema=new mongoose.Schema({
+    pid:String,
+    sid:String,
+    reason:Number
+});
 var User=mongoose.model('User',UserSchema);
 var Seller=mongoose.model('Seller',SellerSchema);
 var Product=mongoose.model('Product',ProductSchema);
+var Report=mongoose.model('Report',ReportSchema);
+var Shop=mongoose.model('Shop',ShopSchema);
 app.get('/api/search',async function(req,res){
     const{query,type,category}=req.body;
     const products=await Product.find({name:query});
@@ -45,22 +56,22 @@ app.get('/api/search',async function(req,res){
             if(products[i].type==type[j]){
                 if(products[i].category==category[j]){
                     var sellers = [];
-                for (const sid of products[i]['sellers']) {
-                    var seller = Seller.find({ _id: sid });
-                    sellers.push(seller[0]);
-                }
-                result.push({
-                    "name":products[i].name,
-                    "minprice":products[i].minprice,
-                    "maxprice":products[i].maxprice,
-                    "category":products[i].category,
-                    "type":products[i].type,
-                    "weight":products[i].weight,
-                    "country":products[i].country,
-                    "material":products[i].material,
-                    "size":products[i].size,
-                    "sellers":sellers
-                });
+                    for (const sid of products[i]['sellers']) {
+                        var seller = Seller.find({ _id: sid });
+                        sellers.push(seller[0]);
+                    }
+                    result.push({
+                        "name":products[i].name,
+                        "minprice":products[i].minprice,
+                        "maxprice":products[i].maxprice,
+                        "category":products[i].category,
+                        "type":products[i].type,
+                        "weight":products[i].weight,
+                        "country":products[i].country,
+                        "material":products[i].material,
+                        "size":products[i].size,
+                        "sellers":sellers
+                    });
                 }
             }
         }
@@ -196,24 +207,116 @@ app.get('/api/product',async function(req,res){
 
 })
 app.post('/api/report',async function(req,res){
-    
+    const{pid,sid,report_type}=req.body;
+    const report=new Report({
+        pid:pid,
+        sid:sid,
+        reason:report_type
+    });
+    res.status(200).send({
+        code:200,
+        message:"report created successfully"
+    });
+    return;
 
 })
 
 app.get('/api/user/favs',async function(req,res){
-    
+    const {uid}=req.body;
+    const user=await User.findOne({_id:uid});
+    if(user){
+        var favorites = [];
+        for (const fid of user['favs']) {
+            var product = Product.find({ _id: fid });
+            favorites.push(product[0]);
+        }
+        res.status(200).send(favorites);
+        return;
+    }
+    else{
+        res.status(400).send({
+            error: {
+                message : "user not found"
+            }});
+            return;
+    }
 
 })
 app.post('/api/user/add_fav',async function(req,res){
-    
+    const {uid,pid}=req.body;
+    const user=await User.findOne({_id:uid});
+    if(!user){
+        res.status(400).send({
+            error: {
+                message : "user not found"
+            }});
+        return;
+    }
+    else{
+        const product=await Product.findOne({_id:pid});
+        if(!product){
+            res.status(400).send({
+                error: {
+                    message : "product not found"
+                }});
+            return;
+        }
+        else{
+            user['favs'].push(pid);
+            user.save();
+            res.status(200).send({
+                code:200,
+                message:"product added to favorites successfully"
+            });
+            return;
+        }
+    }
 
 })
 app.post('/api/user/remove_fav',async function(req,res){
-    
+    const{uid,pid}=req.body;
+    const user=await User.findOne({_id:uid});
+    if(!user){
+        res.status(400).send({
+            error: {
+                message : "user not found"
+            }});
+        return;
+    }
+    else{
+        const product=await Product.findOne({_id:pid});
+        if(!product){
+            res.status(400).send({
+                error: {
+                    message : "product not found"
+                }});
+            return;
+        }
+        else{
+            user['favs'].splice(user['favs'].indexOf(pid),1);
+            user.save();
+            res.status(200).send({
+                code:200,
+                message:"product removed from favorites successfully"
+            });
+            return;
+        }
+    }
 
 })
 app.post('/api/user/add_shop',async function(req,res){
-    
+    const{sid,shop_name}=req.body;
+    const seller=await Seller.findOne({_id:sid});
+    if(!seller){
+        res.status(400).send({
+            error: {
+                message : "seller not found"
+            }});
+        return;
+    }
+    else{
+
+    }
 
 })
 app.post('/api/user/change_info',async function(req,res){
