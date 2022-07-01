@@ -5,6 +5,35 @@ const app=express();
 app.use(express.json());
 main();
 
+const UserSchema= new mongoose.Schema({
+    username:String,
+    passsword:String,
+    email:String,
+    name:String,
+    mobile:String,
+    favs:[Number]
+});
+const SellerSchema= new mongoose.Schema({
+    email:String,
+    password:String,
+    username:String,
+    mobile:Number,
+    name:String,
+    products:[Number]
+});
+const ProductSchema= new mongoose.Schema({
+    name:String,
+    minprice:Number,
+    maxprice:Number,
+    category:String,
+    type:String,
+    weight:Number,
+    country:String,
+    material:String,
+    size:String,
+    sellers:[Number]
+});
+
 app.get('/api/search',async function(req,res){
 
 
