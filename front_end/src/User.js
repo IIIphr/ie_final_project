@@ -12,6 +12,7 @@ function User() {
   let theme = useSelector((state) => state.theme.data);
   let current_user_id = useSelector((state) => state.user.user_id);
   let current_user_type = useSelector((state) => state.user.user_type);
+  let current_user_name = useSelector((state) => state.user.user_name);
   const [cookies, removeCookie] = useCookies(['user_id', 'user_type']);
 
   function class_name(name) {
@@ -30,7 +31,7 @@ function User() {
       <Navbar />
       <div className={class_name("user_cont")}>
         <p>user page</p>
-        <p>well, you are {current_user_id} with your type being {current_user_type}</p>
+        <p>well, you are {current_user_name} with your type being {current_user_type} and id of {current_user_id}</p>
         <button onClick={logout}>logout</button>
       </div>
     </div>

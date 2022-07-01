@@ -9,6 +9,7 @@ function Navbar() {
   let dispatch = useDispatch();
   let theme = useSelector((state) => state.theme.data);
   let current_user_id = useSelector((state) => state.user.user_id);
+  let current_user_name = useSelector((state) => state.user.user_name);
   let current_user_type = useSelector((state) => state.user.user_type);
   const [cookies, setCookie] = useCookies(['theme']);
 
@@ -35,7 +36,7 @@ function Navbar() {
       return (<Link to="/login">login</Link>);
     }
     else{
-      return (<Link to="/user">welcome, {current_user_id}</Link>);
+      return (<Link to="/user">welcome, {current_user_name}</Link>);
     }
   }
 
