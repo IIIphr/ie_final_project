@@ -7,7 +7,7 @@ main();
 
 const UserSchema= new mongoose.Schema({
     username:String,
-    passsword:String,
+    pass:String,
     email:String,
     name:String,
     mobile:String,
@@ -15,7 +15,7 @@ const UserSchema= new mongoose.Schema({
 });
 const SellerSchema= new mongoose.Schema({
     email:String,
-    password:String,
+    pass:String,
     username:String,
     mobile:Number,
     name:String,
@@ -85,7 +85,7 @@ app.get('/api/login',async function(req,res){
     const{username,password}=req.body;
     const user=await User.findOne({username:username});
     if(user){
-        if(user.password==password){
+        if(user.pass==password){
             res.status(200).send({
                 type:"user",
                 user
@@ -102,7 +102,7 @@ app.get('/api/login',async function(req,res){
     else{
         const seller=await Seller.findOne({username:username});
         if(seller){
-            if(seller.password==password){
+            if(seller.pass==password){
                 res.send({
                     type:"seller",
                     seller
@@ -147,7 +147,7 @@ app.post('/api/signup_customer',async function(req,res){
         }
         const user=new User({
             username:username,
-            password:password,
+            pass:password,
             email:email,
             name:name,
             mobile:mobile,
@@ -183,11 +183,16 @@ app.post('/api/signup_seller',async function(req,res){
         else{
             const seller=new Seller({
                 username:username,
-                password:password,
+                pass:password,
                 email:email,
                 name:name,
                 mobile:mobile,
                 shops:[]
+            });
+            seller.save();
+            res.status(200).send({
+                code:200,
+                message:"seller created successfully"
             });
         }
     }
