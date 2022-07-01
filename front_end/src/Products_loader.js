@@ -11,25 +11,23 @@ function Products_loader() {
 
   useEffect(() => {
     if (state) {
-      const { input } = state;
-      if (input != "") {
-        fetch('http://localhost:3030/api/search', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            query: input,
-            type: [],
-            category: []
-          })
+      const { input, categories, brands } = state;
+      fetch('http://localhost:3030/api/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          query: (input || ""),
+          type: categories,
+          category: brands
         })
-          .then(response => response.json())
-          .then(data => {
-            navigate("/products", { state: data });
-          });
-        return;
-      }
+      })
+        .then(response => response.json())
+        .then(data => {
+          navigate("/products", { state: data });
+        });
+      return;
     }
     fetch('http://localhost:3030/api/search', {
       method: 'POST',
