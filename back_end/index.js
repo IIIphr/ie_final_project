@@ -3,6 +3,13 @@ const express=require('express');
 const mongoose = require('mongoose');
 const app=express();
 app.use(express.json());
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
 main();
 
 const UserSchema= new mongoose.Schema({
@@ -47,7 +54,7 @@ var Seller=mongoose.model('Seller',SellerSchema);
 var Product=mongoose.model('Product',ProductSchema);
 var Report=mongoose.model('Report',ReportSchema);
 var Shop=mongoose.model('Shop',ShopSchema);
-app.get('/api/search',async function(req,res){
+app.post('/api/search',async function(req,res){
     const{query,type,category}=req.body;
     const products=await Product.find({name:query});
     var result=[];
@@ -81,7 +88,7 @@ app.get('/api/search',async function(req,res){
     res.status(200).send(result);
 
 })
-app.get('/api/login',async function(req,res){
+app.post('/api/login',async function(req,res){
     const{username,password}=req.body;
     const user=await User.findOne({username:username});
     if(user){
@@ -103,7 +110,7 @@ app.get('/api/login',async function(req,res){
         const seller=await Seller.findOne({username:username});
         if(seller){
             if(seller.pass==password){
-                res.send({
+                res.status(200).send({
                     type:"seller",
                     seller
                 });
@@ -197,7 +204,7 @@ app.post('/api/signup_seller',async function(req,res){
         }
     }
 })
-app.get('/api/product',async function(req,res){
+app.post('/api/product',async function(req,res){
   const{id}=req.body;
   const product=await Product.findOne({_id:id});
   if(product){
@@ -228,7 +235,7 @@ app.post('/api/report',async function(req,res){
 
 })
 
-app.get('/api/user/favs',async function(req,res){
+app.post('/api/user/favs',async function(req,res){
     const {uid}=req.body;
     const user=await User.findOne({_id:uid});
     if(user){
@@ -466,7 +473,7 @@ app.post('/api/user/add_product/new',async function(req,res){
         }
     }
 })
-app.get('/api/user/reports',async function(req,res){
+app.post('/api/user/reports',async function(req,res){
     const{uid,sid}=req.body;
     const user=await Seller.findOne({_id:uid});
     if(!user){
@@ -500,7 +507,7 @@ app.get('/api/user/reports',async function(req,res){
 
 
 })
-app.get('/api/user/shops',async function(req,res){
+app.post('/api/user/shops',async function(req,res){
     const {uid}=req.body;
     const user=await Seller.findOne({_id:uid});
     if(!user){
@@ -527,6 +534,6 @@ app.get('/api/user/shops',async function(req,res){
 
 
 async function main() {
-    await mongoose.connect('mongodb://localhost:27017/test');
+    await mongoose.connect('mongodb://127.0.0.1:27017/test');
     app.listen(3030,()=>console.log("listening on port 3030"));
 }

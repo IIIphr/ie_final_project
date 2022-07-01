@@ -47,7 +47,8 @@ function Login() {
         password: login_password,
       })
     })
-    .then(answer => console.log(answer.json()));
+    .then(response => response.json())
+    .then(data => console.log(data));
   }
 
   // function change_id_func() {
