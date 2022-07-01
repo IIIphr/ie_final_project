@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import { change } from './themeSlice';
 import Navbar from './Navbar';
-import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Products() {
 
@@ -12,6 +12,7 @@ function Products() {
     let theme = useSelector((state) => state.theme.data);
     let navigate = useNavigate();
     let [input, setInput] = useState('');
+    const {state} = useLocation();
 
     function change_theme() {
         dispatch(change());
@@ -32,6 +33,11 @@ function Products() {
                 <p>products</p>
                 <input type="text" onInput={e => setInput(e.target.value)} />
                 <button onClick={search}>SEARCH</button>
+                {
+                    (state || []).map(record => {
+                        return <p key={record._id}>{record.name}</p>;
+                    })
+                }
             </div>
         </div>
     );

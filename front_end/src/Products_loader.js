@@ -12,16 +12,40 @@ function Products_loader() {
   useEffect(() => {
     if (state) {
       const { input } = state;
-      if (input == "") {
-        navigate("/products");
-      }
-      else{
-        //fetch data
+      if (input != "") {
+        fetch('http://localhost:3030/api/search', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            query: input,
+            type: [],
+            category: []
+          })
+        })
+          .then(response => response.json())
+          .then(data => {
+            navigate("/products", { state: data });
+          });
+        return;
       }
     }
-    else {
-      navigate("/products");
-    }
+    fetch('http://localhost:3030/api/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        query: "",
+        type: [],
+        category: []
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        navigate("/products", { state: data });
+      });
   }, []);
 
   return (
