@@ -11,13 +11,13 @@ function Login() {
   let dispatch = useDispatch();
   let navigate = useNavigate();
   let theme = useSelector((state) => state.theme.data);
-  let [input_id, setInputId] = useState('');
-  let [input_type, setInputType] = useState('');
+  let [login_username, setInput_login_username] = useState('');
+  let [login_password, setInput_login_password] = useState('');
   let current_user_id = useSelector((state) => state.user.user_id);
   const [cookies, setCookie] = useCookies(['user_id', 'user_type']);
 
   useEffect(() => {
-    if (current_user_id != -1){
+    if (current_user_id != -1) {
       navigate("/user");
     }
   }, []);
@@ -35,27 +35,58 @@ function Login() {
     return date;
   }
 
-  function change_id_func(){
-    setCookie('user_id', input_id, { path: '/', expires:addMonths(new Date(),1) });
-    dispatch(change_id(input_id));
+
+  function login(){
+    fetch('http://localhost:3030/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: login_username,
+        password: login_password,
+      })
+    })
+    .then(answer => console.log(answer.json()));
   }
 
-  function change_type_func(){
-    setCookie('user_type', input_type, { path: '/', expires:addMonths(new Date(),1) });
-    dispatch(change_type(input_type));
-  } 
+  // function change_id_func() {
+  //   setCookie('user_id', input_id, { path: '/', expires: addMonths(new Date(), 1) });
+  //   dispatch(change_id(input_id));
+  // }
+
+  // function change_type_func() {
+  //   setCookie('user_type', input_type, { path: '/', expires: addMonths(new Date(), 1) });
+  //   dispatch(change_type(input_type));
+  // }
+
+  function signup() {
+    fetch('http://localhost:3030/api/signup_customer', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: "sepehr",
+        password: "123",
+        email: "a@a.a",
+        name: "me",
+        mobile: "0912"
+      })
+    }).then(answer => console.log(answer.message));
+  }
 
   return (
     <div className="cont">
       <Navbar />
       <div className={class_name("login_cont")}>
-        <p>login page</p>
-        <p>id</p>
-        <input type="text" onInput={e => setInputId(e.target.value)} />
-        <button onClick={change_id_func}>change</button>
-        <p>type</p>
-        <input type="text" onInput={e => setInputType(e.target.value)} />
-        <button onClick={change_type_func}>change</button>
+        <p>login:</p>
+        <p>username</p>
+        <input type="text" onInput={e => setInput_login_username(e.target.value)} />
+        <p>password</p>
+        <input type="text" onInput={e => setInput_login_password(e.target.value)} />
+        <button onClick={login}>login</button>
+        <button onClick={signup}>signup????</button>
       </div>
     </div>
   );
