@@ -5,7 +5,9 @@ export const userSlice = createSlice({
   initialState: {
     user_id: -1,
     user_type: null,
-    user_name: ""
+    user_name: "",
+    user_email: "",
+    user_phone: ""
   },
   reducers: {
     change_id: (state, action) => {
@@ -16,10 +18,16 @@ export const userSlice = createSlice({
     },
     change_name: (state, action) => {
       state.user_name = action.payload;
+    },
+    change_email: (state, action) => {
+      state.user_email = action.payload;
+    },
+    change_phone: (state, action) => {
+      state.user_phone = action.payload;
     }
   },
 });
 
-export const { change_id, change_type, change_name } = userSlice.actions;
+export const { change_id, change_type, change_name, change_email, change_phone } = userSlice.actions;
 
 export default userSlice.reducer;

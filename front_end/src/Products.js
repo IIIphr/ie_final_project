@@ -77,7 +77,7 @@ function Products() {
                 <input onChange={check_changed} type="checkbox" value="8" /> apple laptop <br />
                 {
                     (state || []).map(record => {
-                        return <p key={record._id}>{record.name}</p>;
+                        return <Link to="/product" state={record}><p key={record.name}>{record.name}</p></Link>;
                     })
                 }
             </div>

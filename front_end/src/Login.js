@@ -20,7 +20,7 @@ function Login() {
   let [signup_mobile, setInput_signup_mobile] = useState('');
   let [signup_type, setInput_signup_type] = useState('user');
   let current_user_id = useSelector((state) => state.user.user_id);
-  const [cookies, setCookie] = useCookies(['user_id', 'user_type', 'user_name']);
+  const [cookies, setCookie] = useCookies(['user_id', 'user_type', 'user_name', 'user_email', 'user_phone']);
 
   useEffect(() => {
     if (current_user_id != -1) {
@@ -40,7 +40,6 @@ function Login() {
     }
     return date;
   }
-
 
   function login() {
     if (login_username == "") {
@@ -66,9 +65,19 @@ function Login() {
             setMessage(data.error.message);
           }
           else {
-            setCookie('user_id', data.user._id, { path: '/', expires: addMonths(new Date(), 1) });
-            setCookie('user_name', data.user.name, { path: '/', expires: addMonths(new Date(), 1) });
             setCookie('user_type', data.type, { path: '/', expires: addMonths(new Date(), 1) });
+            if (data.type == "user") {
+              setCookie('user_id', data.user._id, { path: '/', expires: addMonths(new Date(), 1) });
+              setCookie('user_name', data.user.name, { path: '/', expires: addMonths(new Date(), 1) });
+              setCookie('user_email', data.user.email, { path: '/', expires: addMonths(new Date(), 1) });
+              setCookie('user_phone', data.user.mobile, { path: '/', expires: addMonths(new Date(), 1) });
+            }
+            else{
+              setCookie('user_id', data.seller._id, { path: '/', expires: addMonths(new Date(), 1) });
+              setCookie('user_name', data.seller.name, { path: '/', expires: addMonths(new Date(), 1) });
+              setCookie('user_email', data.seller.email, { path: '/', expires: addMonths(new Date(), 1) });
+              setCookie('user_phone', data.seller.mobile, { path: '/', expires: addMonths(new Date(), 1) });
+            }
             navigate("/");
           }
         });

@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import Login from './Login';
 import Products_loader from './Products_loader';
 import Products from './Products';
+import Product from './Product';
 import User from './User';
 import { CookiesProvider } from 'react-cookie';
 
@@ -22,6 +23,7 @@ root.render(
           <Route path="/login" element={<Login />} />
           <Route path="/products_loader" element={<Products_loader />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/product" element={<Product />} />
           <Route path="/user" element={<User />} />
         </Routes>
       </BrowserRouter>
