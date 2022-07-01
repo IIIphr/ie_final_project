@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { change_id, change_type } from './userSlice';
 import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from './Navbar';
+import { useCookies } from 'react-cookie';
 
 function User() {
 
@@ -11,12 +12,15 @@ function User() {
   let theme = useSelector((state) => state.theme.data);
   let current_user_id = useSelector((state) => state.user.user_id);
   let current_user_type = useSelector((state) => state.user.user_type);
+  const [cookies, removeCookie] = useCookies(['user_id', 'user_type']);
 
   function class_name(name) {
     return name + " " + name + "_" + theme;
   }
 
   function logout(){
+    removeCookie('user_id');
+    removeCookie('user_type');
     dispatch(change_id(-1));
     navigate("/");
   }
