@@ -89,6 +89,28 @@ function User() {
     }
   }
 
+  function to_shops() {
+    fetch('http://localhost:3030/api/user/shops', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        uid: current_user_id
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          console.log(current_user_id);
+          setMessage(data.error.message);
+        }
+        else {
+          navigate("/shops", {state: data});
+        }
+      });
+  }
+
   function for_seller() {
     if (current_user_type == "seller") {
       return (
@@ -100,6 +122,7 @@ function User() {
           <p>mobile</p>
           <input type="text" value={mobile} onInput={e => setInput_mobile(e.target.value)} />
           <button onClick={change_info}>change info</button>
+          <button onClick={to_shops}>shops</button>
         </div>
       );
     }

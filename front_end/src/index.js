@@ -11,6 +11,7 @@ import Products_loader from './Products_loader';
 import Products from './Products';
 import Product from './Product';
 import User from './User';
+import Shops from './Shops';
 import { CookiesProvider } from 'react-cookie';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -25,6 +26,7 @@ root.render(
           <Route path="/products" element={<Products />} />
           <Route path="/product" element={<Product />} />
           <Route path="/user" element={<User />} />
+          <Route path="/shops" element={<Shops />} />
         </Routes>
       </BrowserRouter>
     </Provider>

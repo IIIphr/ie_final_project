@@ -1,5 +1,6 @@
 const { response } = require('express');
 const express = require('express');
+const { ObjectId } = require('mongodb');
 const mongoose = require('mongoose');
 const app = express();
 app.use(express.json());
@@ -18,7 +19,7 @@ const UserSchema = new mongoose.Schema({
     email: String,
     name: String,
     mobile: String,
-    favs: [Number]
+    favs: [ObjectId]
 });
 const SellerSchema = new mongoose.Schema({
     email: String,
@@ -26,7 +27,7 @@ const SellerSchema = new mongoose.Schema({
     username: String,
     mobile: Number,
     name: String,
-    shops: [Number]
+    shops: [ObjectId]
 });
 const ProductSchema = new mongoose.Schema({
     name: String,
@@ -36,13 +37,13 @@ const ProductSchema = new mongoose.Schema({
     country: String,
     material: String,
     size: String,
-    price: [Number],
+    price: [ObjectId],
     link: [String],
-    shops: [Number]
+    shops: [ObjectId]
 });
 const ShopSchema = new mongoose.Schema({
     name: String,
-    products: [Number]
+    products: [ObjectId]
 });
 const ReportSchema = new mongoose.Schema({
     pid: String,
