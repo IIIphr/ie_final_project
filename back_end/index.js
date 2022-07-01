@@ -462,11 +462,59 @@ app.post('/api/user/add_product/new',async function(req,res){
     }
 })
 app.get('/api/user/reports',async function(req,res){
-    
+    const{uid,sid}=req.body;
+    const user=await Seller.findOne({_id:uid});
+    if(!user){
+        res.status(400).send({
+            error: {
+                message : "user not found"
+            }});
+        return;
+    }
+    if(!user['shops'].includes(sid)){
+        res.status(400).send({
+            error: {
+                message : "shop not found"
+            }});
+        return;
+    }
+    const reports=await Report.find({sid:uid});
+
+    const shop=await Shop.findOne({_id:sid});
+    const result=[];
+    for(const report of reports){
+        if(shop['products'].includes(report.pid)){
+            result.push(report);
+        }
+    }
+    res.status(200).send({
+        data:result,
+        code:200,
+        message:"reports fetched successfully"
+    });
+
 
 })
 app.get('/api/user/shops',async function(req,res){
-    
+    const {uid}=req.body;
+    const user=await Seller.findOne({_id:uid});
+    if(!user){
+        res.status(400).send({
+            error: {
+                message : "user not found"
+            }});
+        return;
+    }
+    var result=[];
+    for (const shop of user['shops']){
+        const shop_obj=await Shop.findOne({_id:shop});
+        result.push(shop_obj);
+    }
+    res.status(200).send({
+        data:result,
+        code:200,
+        message:"shops fetched successfully"
+    });
 
 })
 
