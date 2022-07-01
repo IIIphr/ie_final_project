@@ -1,0 +1,15 @@
+.prods_item_cont{
+  }
+  .prods_item_cont_light{
+    background-color: white;
+  }
+  .prods_item_cont_light *{
+    color: black;
+  }
+  .prods_item_cont_dark{
+    background-color: black;
+  }
+  .prods_item_cont_dark *{
+    color: white;
+  }
+  

@@ -25,6 +25,25 @@ function Shops() {
     return name + " " + name + "_" + theme;
   }
 
+  function to_shop(record) {
+    fetch('http://localhost:3030/api/user/reports', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        uid: current_user_id,
+        sid: record._id
+      })
+    })
+      .then(response => response.json())
+      .then(data_reports => {
+        if (! data_reports.error) {
+          navigate("/shop", { state: {data: data, reports: data_reports.data}});
+        }
+      });
+  }
+
   return (
     <div className="cont">
       <Navbar />
@@ -32,7 +51,7 @@ function Shops() {
         <p>shops page</p>
         {
           (data || []).map(record => {
-            return <Link to="/shop" state={record}><p key={record.name}>{record.name}</p></Link>;
+            return <button key={record.name} onClick={() => to_shop(record)}>{record.name}</button>;
           })
         }
       </div>

@@ -5,6 +5,7 @@ import { change } from './themeSlice';
 import Navbar from './Navbar';
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
+import Products_item from './Products_item';
 
 function Products() {
 
@@ -77,7 +78,7 @@ function Products() {
                 <input onChange={check_changed} type="checkbox" value="8" /> apple laptop <br />
                 {
                     (state || []).map(record => {
-                        return <Link to="/product" state={record}><p key={record.name}>{record.name}</p></Link>;
+                        return <Products_item key={record._id} data={record} />;
                     })
                 }
             </div>

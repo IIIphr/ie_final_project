@@ -102,7 +102,6 @@ function User() {
       .then(response => response.json())
       .then(data => {
         if (data.error) {
-          console.log(current_user_id);
           setMessage(data.error.message);
         }
         else {

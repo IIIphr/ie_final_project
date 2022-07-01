@@ -11,6 +11,7 @@ function Shop() {
 
   let theme = useSelector((state) => state.theme.data);
   const {state} = useLocation();
+  const {data, reports} = state;
   let dispatch = useDispatch();
   let navigate = useNavigate();
   let [input, setInput] = useState('');
@@ -24,12 +25,21 @@ function Shop() {
     return name + " " + name + "_" + theme;
   }
 
+  useEffect(() => {
+    console.log(state);
+  }, []);
+
   return (
     <div className="cont">
       <Navbar />
       <div className={class_name("Shop_cont")}>
         <p>Shop page</p>
-        <p>{state.name}</p>
+        <p>{data.name}</p>
+        {
+          // (reports || []).map(record => {
+          //   return <p key={record.pid +" "+ record.sid}>{record.Number}</p>
+          // })
+        }
       </div>
     </div>
   );
