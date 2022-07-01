@@ -1,17 +1,16 @@
-import './Shops.css';
+import './Shop.css';
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from './Navbar';
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import { change_id, change_type, change_name } from './userSlice';
 import { change } from './themeSlice';
 
-function Shops() {
+function Shop() {
 
   let theme = useSelector((state) => state.theme.data);
-  const { state } = useLocation();
-  const { data } = state;
+  const {state} = useLocation();
   let dispatch = useDispatch();
   let navigate = useNavigate();
   let [input, setInput] = useState('');
@@ -28,16 +27,12 @@ function Shops() {
   return (
     <div className="cont">
       <Navbar />
-      <div className={class_name("shops_cont")}>
-        <p>shops page</p>
-        {
-          (data || []).map(record => {
-            return <Link to="/shop" state={record}><p key={record.name}>{record.name}</p></Link>;
-          })
-        }
+      <div className={class_name("Shop_cont")}>
+        <p>Shop page</p>
+        <p>{state.name}</p>
       </div>
     </div>
   );
 }
 
-export default Shops;
+export default Shop;

@@ -1,0 +1,17 @@
+.shop_cont{
+    width: 100%;
+    height: 90%;
+  }
+  .shop_cont_light{
+    background-color: white;
+  }
+  .shop_cont_light *{
+    color: black;
+  }
+  .shop_cont_dark{
+    background-color: black;
+  }
+  .shop_cont_dark *{
+    color: white;
+  }
+  
