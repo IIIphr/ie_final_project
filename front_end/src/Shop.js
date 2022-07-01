@@ -25,10 +25,6 @@ function Shop() {
     return name + " " + name + "_" + theme;
   }
 
-  useEffect(() => {
-    console.log(state);
-  }, []);
-
   return (
     <div className="cont">
       <Navbar />
@@ -36,9 +32,9 @@ function Shop() {
         <p>Shop page</p>
         <p>{data.name}</p>
         {
-          // (reports || []).map(record => {
-          //   return <p key={record.pid +" "+ record.sid}>{record.Number}</p>
-          // })
+          (reports || []).map(record => {
+            return <p key={record.pid +" "+ record.sid}>{record.Number}</p>
+          })
         }
       </div>
     </div>

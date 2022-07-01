@@ -1,7 +1,7 @@
 import './User.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { change_id, change_type, change_name, change_phone, change_email } from './userSlice';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import { useCookies } from 'react-cookie';
@@ -121,6 +121,7 @@ function User() {
           <p>mobile</p>
           <input type="text" value={mobile} onInput={e => setInput_mobile(e.target.value)} />
           <button onClick={change_info}>change info</button>
+          <Link to="/add_shop"><p>add shop</p></Link>
           <button onClick={to_shops}>shops</button>
         </div>
       );

@@ -372,7 +372,7 @@ app.post('/api/user/add_shop', async function (req, res) {
         return;
     }
     else {
-        const tshop = await Shop.findOne({ _id: shop_name });
+        const tshop = await Shop.findOne({ name: shop_name });
         if (tshop) {
             res.status(400).send({
                 error: {
