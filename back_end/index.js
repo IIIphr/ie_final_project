@@ -7,7 +7,7 @@ main();
 
 const UserSchema= new mongoose.Schema({
     username:String,
-    passsword:String,
+    pass:String,
     email:String,
     name:String,
     mobile:String,
@@ -15,7 +15,7 @@ const UserSchema= new mongoose.Schema({
 });
 const SellerSchema= new mongoose.Schema({
     email:String,
-    password:String,
+    pass:String,
     username:String,
     mobile:Number,
     name:String,
@@ -23,15 +23,15 @@ const SellerSchema= new mongoose.Schema({
 });
 const ProductSchema= new mongoose.Schema({
     name:String,
-    minprice:Number,
-    maxprice:Number,
     category:String,
     type:String,
     weight:Number,
     country:String,
     material:String,
     size:String,
-    sellers:[Number]
+    price:[Number],
+    link:[String],
+    shops:[Number]
 });
 const ShopSchema=new mongoose.Schema({
     name:String,
@@ -55,22 +55,24 @@ app.get('/api/search',async function(req,res){
         for(let j=0;j<type.length;j++){
             if(products[i].type==type[j]){
                 if(products[i].category==category[j]){
-                    var sellers = [];
-                    for (const sid of products[i]['sellers']) {
-                        var seller = Seller.find({ _id: sid });
-                        sellers.push(seller[0]);
+                    var shops = [];
+                    for (const sid of products[i]['shops']) {
+                        var shop = Shop.find({ _id: sid });
+                        shops.push(shop[0]);
                     }
+                    
                     result.push({
+                        "pid": products[i]['_id'],
                         "name":products[i].name,
-                        "minprice":products[i].minprice,
-                        "maxprice":products[i].maxprice,
                         "category":products[i].category,
                         "type":products[i].type,
                         "weight":products[i].weight,
                         "country":products[i].country,
                         "material":products[i].material,
                         "size":products[i].size,
-                        "sellers":sellers
+                        "shops":shops,
+                        "prices":products[i].price,
+                        "links":products[i].link
                     });
                 }
             }
@@ -83,7 +85,7 @@ app.get('/api/login',async function(req,res){
     const{username,password}=req.body;
     const user=await User.findOne({username:username});
     if(user){
-        if(user.password==password){
+        if(user.pass==password){
             res.status(200).send({
                 type:"user",
                 user
@@ -100,7 +102,7 @@ app.get('/api/login',async function(req,res){
     else{
         const seller=await Seller.findOne({username:username});
         if(seller){
-            if(seller.password==password){
+            if(seller.pass==password){
                 res.send({
                     type:"seller",
                     seller
@@ -145,7 +147,7 @@ app.post('/api/signup_customer',async function(req,res){
         }
         const user=new User({
             username:username,
-            password:password,
+            pass:password,
             email:email,
             name:name,
             mobile:mobile,
@@ -181,11 +183,16 @@ app.post('/api/signup_seller',async function(req,res){
         else{
             const seller=new Seller({
                 username:username,
-                password:password,
+                pass:password,
                 email:email,
                 name:name,
                 mobile:mobile,
-                products:[]
+                shops:[]
+            });
+            seller.save();
+            res.status(200).send({
+                code:200,
+                message:"seller created successfully"
             });
         }
     }
@@ -315,28 +322,204 @@ app.post('/api/user/add_shop',async function(req,res){
         return;
     }
     else{
-
+        const tshop=await Shop.findOne({_id:shop_name});
+        if(tshop){
+            res.status(400).send({
+                error: {
+                    message : "shop already exists"
+                }});
+            return;
+        }
+        const shop=new Shop({
+            name:shop_name,
+            products:[]
+        });
+        shop.save();
+        seller['shops'].push(shop._id);
+        seller.save();
+        res.status(200).send({
+            code:200,
+            message:"shop added successfully"
+        });
     }
 
 })
 app.post('/api/user/change_info',async function(req,res){
-    
+    const{user_id, phone, name, email}=req.body;
+    const user=await Seller.findOne({_id:user_id});
+    if(!user){
+        res.status(400).send({
+            error: {
+                message : "user not found"
+            }});
+        return;
+    }
+    else{
+        user['mobile']=phone;
+        user['name']=name;
+        user['email']=email;
+        user.save();
+        res.status(200).send({
+            code:200,
+            message:"user info changed successfully"
+        });
+    }
 
 })
 app.post('/api/user/add_product/existing',async function(req,res){
-    
-
+    const {uid,sid,pid,price,link}=req.body;
+    const user=await Seller.findOne({_id:uid});
+    if(!user){
+        res.status(400).send({
+            error: {
+                message : "user not found"
+            }});
+        return;
+    }
+    else{
+        if(!user['shops'].includes(sid)){
+            res.status(400).send({
+                error: {
+                    message : "shop not found"
+                }});
+            return;
+        }
+        else{
+            const shop=await Shop.findOne({_id:sid});
+            if(shop['products'].includes(pid)){
+                res.status(400).send({
+                    error: {
+                        message : "product already exists"
+                    }});
+                return;
+            }
+            else{
+                const product=await Product.findOne({_id:pid});
+                product.price.push(price);
+                product.link.push(link);
+                product.shops.push(sid);
+                product.save();
+                shop['products'].push(pid);
+                shop.save();
+                res.status(200).send({
+                    code:200,
+                    message:"product added successfully"
+                });
+                return;
+            }
+        }
+    }
 })
 app.post('/api/user/add_product/new',async function(req,res){
-    
-
+    const {uid,sid,name,category,type,weight,country,material,size,price,link}=req.body;
+    const user=await Seller.findOne({_id:uid});
+    if(!user){
+        res.status(400).send({
+            error: {
+                message : "user not found"
+            }});
+        return;
+    }
+    else{
+        if(!user['shops'].includes(sid)){
+            res.status(400).send({
+                error: {
+                    message : "shop not found"
+                }});
+            return;
+        }
+        else{
+            const shop=await Shop.findOne({_id:sid});
+            const product=await Product.findOne({name:name});
+            if(product){
+                res.status(400).send({
+                    error: {
+                        message : "product already exists"
+                    }});
+                return;
+            }
+            else{
+                const newProduct=new Product({
+                    name:name,
+                    category:category,
+                    type:type,
+                    weight:weight,
+                    country:country,
+                    material:material,
+                    size:size,
+                    link:[],
+                    shops:[],
+                    price:[]
+                });
+                newProduct.link.push(link);
+                newProduct.shops.push(sid);
+                newProduct.price.push(price);
+                newProduct.save();
+                shop['products'].push(newProduct._id);
+                shop.save();
+                res.status(200).send({
+                    code:200,
+                    message:"product added successfully"
+                });
+                return;
+            }
+        }
+    }
 })
 app.get('/api/user/reports',async function(req,res){
-    
+    const{uid,sid}=req.body;
+    const user=await Seller.findOne({_id:uid});
+    if(!user){
+        res.status(400).send({
+            error: {
+                message : "user not found"
+            }});
+        return;
+    }
+    if(!user['shops'].includes(sid)){
+        res.status(400).send({
+            error: {
+                message : "shop not found"
+            }});
+        return;
+    }
+    const reports=await Report.find({sid:uid});
+
+    const shop=await Shop.findOne({_id:sid});
+    const result=[];
+    for(const report of reports){
+        if(shop['products'].includes(report.pid)){
+            result.push(report);
+        }
+    }
+    res.status(200).send({
+        data:result,
+        code:200,
+        message:"reports fetched successfully"
+    });
+
 
 })
 app.get('/api/user/shops',async function(req,res){
-    
+    const {uid}=req.body;
+    const user=await Seller.findOne({_id:uid});
+    if(!user){
+        res.status(400).send({
+            error: {
+                message : "user not found"
+            }});
+        return;
+    }
+    var result=[];
+    for (const shop of user['shops']){
+        const shop_obj=await Shop.findOne({_id:shop});
+        result.push(shop_obj);
+    }
+    res.status(200).send({
+        data:result,
+        code:200,
+        message:"shops fetched successfully"
+    });
 
 })
 
@@ -345,4 +528,5 @@ app.get('/api/user/shops',async function(req,res){
 
 async function main() {
     await mongoose.connect('mongodb://localhost:27017/test');
+    app.listen(3030,()=>console.log("listening on port 3030"));
 }
