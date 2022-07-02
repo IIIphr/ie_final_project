@@ -5,6 +5,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import { useCookies } from 'react-cookie';
+import Products_item from './Products_item';
 
 function User() {
 
@@ -20,6 +21,7 @@ function User() {
   let [email, setInput_email] = useState(current_user_email);
   let [name, setInput_name] = useState(current_user_name);
   let [mobile, setInput_mobile] = useState(current_user_mobile);
+  let [fav_data, set_fav_data] = useState(null);
   const [cookies, removeCookie, setCookie] = useCookies(['user_id', 'user_type', 'user_name', 'user_email', 'user_phone']);
 
   function class_name(name) {
@@ -105,12 +107,12 @@ function User() {
           setMessage(data.error.message);
         }
         else {
-          navigate("/shops", {state: data});
+          navigate("/shops", { state: data });
         }
       });
   }
 
-  function for_seller() {
+  function for_seller_or_user() {
     if (current_user_type == "seller") {
       return (
         <div>
@@ -129,12 +131,34 @@ function User() {
     return null;
   }
 
+  function show_fav(){
+    fetch('http://localhost:3030/api/user/favs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          uid: current_user_id
+        })
+      })
+        .then(response => response.json())
+        .then(data => {
+          set_fav_data(data);
+        });
+  }
+
   return (
     <div className="cont">
       <Navbar />
       <div className={class_name("user_cont")}>
         <p>user page</p>
-        {for_seller()}
+        {for_seller_or_user()}
+        {current_user_type == "user" ? <button onClick={show_fav}>show fav</button> : null}
+        {
+          (fav_data || []).map(record => {
+            return <Products_item key={record._id} data={record} />;
+          })
+        }
         <button onClick={logout}>logout</button>
         <h1>{message}</h1>
       </div>

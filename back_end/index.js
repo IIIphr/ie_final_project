@@ -278,7 +278,7 @@ app.post('/api/user/favs', async function (req, res) {
     if (user) {
         var favorites = [];
         for (const fid of user['favs']) {
-            var product = Product.find({ _id: fid });
+            var product = await Product.find({ _id: fid });
             favorites.push(product[0]);
         }
         res.status(200).send(favorites);

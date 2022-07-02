@@ -25,7 +25,7 @@ function Products_item(props) {
       },
       body: JSON.stringify({
         uid: current_user_id,
-        pid: props.data.pid,
+        pid: props.data.pid ? props.data.pid : props.data._id,
       })
     })
       .then(response => response.json())
@@ -42,7 +42,7 @@ function Products_item(props) {
       },
       body: JSON.stringify({
         uid: current_user_id,
-        pid: props.data.pid,
+        pid: props.data.pid ? props.data.pid : props.data._id,
       })
     })
       .then(response => response.json())
