@@ -12,12 +12,28 @@
 .navbar_light{
     background-color: black;
 }
-.navbar_light *{
-    color: white;
-}
 .navbar_dark{
     background-color: white;
 }
-.navbar_dark *{
-    color: black;
+
+.nav_btn{
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: grey;
+    padding: 2.5%;
+    font-size: 1em;
+    cursor: pointer;
+}
+.nav_btn_light{
+    color: white;
+}
+.nav_btn_light:hover{
+    background-color: rgb(85, 85, 85);
+}
+.nav_btn_dark{
+    color: white;
+}
+.nav_btn_dark:hover{
+    background-color: rgb(85, 85, 85);
 }

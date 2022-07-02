@@ -33,19 +33,19 @@ function Navbar() {
 
   function user_section() {
     if (current_user_id == -1) {
-      return (<Link to="/login">login</Link>);
+      return (<Link className={class_name('nav_btn')} to="/login">login</Link>);
     }
     else{
-      return (<Link to="/user">welcome, {current_user_name}</Link>);
+      return (<Link className={class_name('nav_btn')} to="/user">welcome, {current_user_name}</Link>);
     }
   }
 
   return (
     <div className={class_name("navbar")}>
-      <Link to="/">TOROB</Link>
-      <Link to="/products_loader">all products</Link>
+      <Link className={class_name('nav_btn')} to="/">TOROB</Link>
+      <Link className={class_name('nav_btn')} to="/products_loader">all products</Link>
       {user_section()}
-      <button onClick={change_theme}>change theme</button>
+      <button className={class_name('nav_btn')} onClick={change_theme}>change theme</button>
     </div>
   );
 }
