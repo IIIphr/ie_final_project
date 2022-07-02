@@ -25,9 +25,20 @@ function Add_new_prod() {
   let [country, setInput_country] = useState('');
   let [weight, setInput_weight] = useState('');
   let [material, setInput_material] = useState('');
-  let [brand, setInput_brand] = useState("samsung");
-  let [type, setInput_type] = useState("mobile");
+  let [brand, set_brand] = useState('samsung');
+  let [type, set_cat] = useState('mobile');
+  let [number, set_number] = useState(0);
   const [cookies, removeCookie, setCookie] = useCookies(['user_id', 'user_type', 'user_name', 'user_email', 'user_phone']);
+  const brand_list= [
+    'samsung', 'xiaomi', 'apple',
+    'samsung', 'xiaomi', 'apple',
+    'lenovo', 'asus', 'apple'
+  ];
+  const category_list= [
+    'mobile', 'mobile', 'mobile',
+    'tablet', 'tablet', 'tablet',
+    'laptop', 'laptop', 'laptop'
+  ];
 
   function class_name(name) {
     return name + " " + name + "_" + theme;
@@ -106,6 +117,15 @@ function Add_new_prod() {
         <input type="text" onInput={e => setInput_weight(e.target.value)} />
         <p>material</p>
         <input type="text" onInput={e => setInput_material(e.target.value)} />
+        <div className={class_name('add_prod_rad_cont')}><input className={class_name('add_prod_rad_in')} onClick={() => {set_brand(brand_list[0]); set_cat(category_list[0]); set_number(0);}} checked={number == 0} type="radio" value="0" id="0"/><label htmlFor='0' className={class_name('add_prod_radio_lab')}>samsung mobile</label></div>
+        <div className={class_name('add_prod_rad_cont')}><input className={class_name('add_prod_rad_in')} onClick={() => {set_brand(brand_list[1]); set_cat(category_list[1]); set_number(1);}} checked={number == 1} type="radio" value="1" id="1"/><label htmlFor='1' className={class_name('add_prod_radio_lab')}>xiaomi mobile</label></div>
+        <div className={class_name('add_prod_rad_cont')}><input className={class_name('add_prod_rad_in')} onClick={() => {set_brand(brand_list[2]); set_cat(category_list[2]); set_number(2);}} checked={number == 2} type="radio" value="2" id="2"/><label htmlFor='2' className={class_name('add_prod_radio_lab')}>apple mobile</label></div>
+        <div className={class_name('add_prod_rad_cont')}><input className={class_name('add_prod_rad_in')} onClick={() => {set_brand(brand_list[3]); set_cat(category_list[3]); set_number(3);}} checked={number == 3} type="radio" value="3" id="3"/><label htmlFor='3' className={class_name('add_prod_radio_lab')}>samsung tablet</label></div>
+        <div className={class_name('add_prod_rad_cont')}><input className={class_name('add_prod_rad_in')} onClick={() => {set_brand(brand_list[4]); set_cat(category_list[4]); set_number(4);}} checked={number == 4} type="radio" value="4" id="4"/><label htmlFor='4' className={class_name('add_prod_radio_lab')}>xiaomi tablet</label></div>
+        <div className={class_name('add_prod_rad_cont')}><input className={class_name('add_prod_rad_in')} onClick={() => {set_brand(brand_list[5]); set_cat(category_list[5]); set_number(5);}} checked={number == 5} type="radio" value="5" id="5"/><label htmlFor='5' className={class_name('add_prod_radio_lab')}>apple tablet</label></div>
+        <div className={class_name('add_prod_rad_cont')}><input className={class_name('add_prod_rad_in')} onClick={() => {set_brand(brand_list[6]); set_cat(category_list[6]); set_number(6);}} checked={number == 6} type="radio" value="6" id="6"/><label htmlFor='6' className={class_name('add_prod_radio_lab')}>lenovo laptop</label></div>
+        <div className={class_name('add_prod_rad_cont')}><input className={class_name('add_prod_rad_in')} onClick={() => {set_brand(brand_list[7]); set_cat(category_list[7]); set_number(7);}} checked={number == 7} type="radio" value="7" id="7"/><label htmlFor='7' className={class_name('add_prod_radio_lab')}>asus laptop</label></div>
+        <div className={class_name('add_prod_rad_cont')}><input className={class_name('add_prod_rad_in')} onClick={() => {set_brand(brand_list[8]); set_cat(category_list[8]); set_number(8);}} checked={number == 8} type="radio" value="8" id="8"/><label htmlFor='8' className={class_name('add_prod_radio_lab')}>apple laptop</label></div>
         <button onClick={add_p}>add</button>
         <h1>{message}</h1>
       </div>

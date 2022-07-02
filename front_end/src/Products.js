@@ -37,7 +37,7 @@ function Products() {
   }
 
   function search() {
-    navigate("/products_loader", { state: { input: input } });
+    navigate("/products_loader", { state: { input: input, categories: categories, brands: brands } });
   }
 
   function check_changed(e) {
