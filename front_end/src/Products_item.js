@@ -25,7 +25,24 @@ function Products_item(props) {
       },
       body: JSON.stringify({
         uid: current_user_id,
-        pid: props.data._id,
+        pid: props.data.pid,
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      });
+  }
+
+  function remove_fav() {
+    fetch('http://localhost:3030/api/user/remove_fav', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        uid: current_user_id,
+        pid: props.data.pid,
       })
     })
       .then(response => response.json())
@@ -36,7 +53,12 @@ function Products_item(props) {
 
   function for_user(){
     if(current_user_type == "user"){
-      return (<button onClick={add_to_fav}>add to fav</button>);
+      return (
+        <div>
+          <button onClick={add_to_fav}>add to fav</button>
+          <button onClick={remove_fav}>remove fav</button>
+        </div>
+      );
     }
     return null;
   }
