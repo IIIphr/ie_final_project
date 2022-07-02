@@ -66,6 +66,7 @@ function Products_item(props) {
   return (
     <div className={class_name("prods_item_cont")}>
       <Link className={class_name("prods_item_link")} to="/product" state={props.data}>{props.data.name}</Link>
+      <p className={class_name("prods_item_price")}>{"price range: "+Math.min(...props.data.prices)+"-"+Math.max(...props.data.prices)}</p>
       {for_user()}
     </div>
   );

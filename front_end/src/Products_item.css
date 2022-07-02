@@ -75,3 +75,7 @@
 .prods_item_unfav_dark:hover{
   background-color: rgb(85, 85, 85);
 }
+
+.prods_item_price{}
+.prods_item_price_light{color: black;}
+.prods_item_price_dark{color: white;}
