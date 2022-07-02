@@ -28,7 +28,7 @@ function Shop() {
   return (
     <div className="cont">
       <Navbar />
-      <div className={class_name("Shop_cont")}>
+      <div className={class_name("shop_cont")}>
         <p>Shop page</p>
         <p>name: {data.name}</p>
         <Link to="/add_new_prod" state={data}><p>add new product</p></Link>
