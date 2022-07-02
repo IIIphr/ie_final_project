@@ -1,16 +1,299 @@
-.login_cont {
+.cont_cont {
   width: 100%;
   height: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+.cont_cont_light {
+  background-color: white;
+}
+.cont_cont_dark {
+  background-color: black;
+}
+
+.login_cont {
+  width: 90%;
+  height: 50%;
+  display: grid;
+  grid-template-rows: 3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  justify-items: center;
 }
 .login_cont_light {
   background-color: white;
 }
-.login_cont_light *{
-  color: black;
-}
 .login_cont_dark {
   background-color: black;
 }
-.login_cont_dark *{
+
+.signup_cont {
+  width: 90%;
+  height: 50%;
+  display: grid;
+  grid-template-rows: 3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  justify-items: center;
+}
+.signup_cont_light {
+  background-color: white;
+}
+.signup_cont_dark {
+  background-color: black;
+}
+
+.login_header{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.login_header_light{
+  color: black;
+}
+.login_header_dark{
+  color: white;
+}
+
+.login_username_label{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.login_username_label_light{
+  color: black;
+}
+.login_username_label_dark{
+  color: white;
+}
+
+.login_username_input{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.login_username_input_light{
+  color: black;
+}
+.login_username_input_dark{
+  color: white;
+}
+
+.login_password_label{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.login_password_label_light{
+  color: black;
+}
+.login_password_label_dark{
+  color: white;
+}
+
+.login_password_input{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.login_password_input_light{
+  color: black;
+}
+.login_password_input_dark{
+  color: white;
+}
+
+.login_password_btn{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.login_password_btn_light{
+  color: black;
+}
+.login_password_btn_dark{
+  color: white;
+}
+
+.login_btn{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.login_btn_light{
+  color: black;
+}
+.login_btn_dark{
+  color: white;
+}
+
+.login_msg{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.login_msg_light{
+  color: black;
+}
+.login_msg_dark{
+  color: white;
+}
+
+.signup_header{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_header_light{
+  color: black;
+}
+.signup_header_dark{
+  color: white;
+}
+
+.signup_username_label{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_username_label_light{
+  color: black;
+}
+.signup_username_label_dark{
+  color: white;
+}
+
+.signup_username_input{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_username_input_light{
+  color: black;
+}
+.signup_username_input_dark{
+  color: white;
+}
+
+.signup_password_label{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_password_label_light{
+  color: black;
+}
+.signup_password_label_dark{
+  color: white;
+}
+
+.signup_password_input{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_password_input_light{
+  color: black;
+}
+.signup_password_input_dark{
+  color: white;
+}
+
+.signup_password_btn{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_password_btn_light{
+  color: black;
+}
+.signup_password_btn_dark{
+  color: white;
+}
+
+.signup_email_label{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_email_label_light{
+  color: black;
+}
+.signup_email_label_dark{
+  color: white;
+}
+
+.signup_email_linput{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_email_linput_light{
+  color: black;
+}
+.signup_email_linput_dark{
+  color: white;
+}
+
+.signup_name_label{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_name_label_light{
+  color: black;
+}
+.signup_name_label_dark{
+  color: white;
+}
+
+.signup_name_ipnut{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_name_ipnut_light{
+  color: black;
+}
+.signup_name_ipnut_dark{
+  color: white;
+}
+
+.signup_mobile_label{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_mobile_label_light{
+  color: black;
+}
+.signup_mobile_label_dark{
+  color: white;
+}
+
+.signup_mobile_input{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_mobile_input_light{
+  color: black;
+}
+.signup_mobile_input_dark{
+  color: white;
+}
+
+.signup_radio_cont{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_radio_cont_light{
+  color: black;
+}
+.signup_radio_cont_dark{
+  color: white;
+}
+
+.signup_btn{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_btn_light{
+  color: black;
+}
+.signup_btn_dark{
+  color: white;
+}
+
+.signup_msg{
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 1;
+}
+.signup_msg_light{
+  color: black;
+}
+.signup_msg_dark{
   color: white;
 }

@@ -12,7 +12,8 @@ function Login() {
   const [is_shown_login, set_is_shown_login] = useState(false);
   const [is_shown_signup, set_is_shown_signup] = useState(false);
   let theme = useSelector((state) => state.theme.data);
-  let [message, setMessage] = useState('');
+  let [login_message, set_login_msg] = useState('');
+  let [signup_message, set_signup_msg] = useState('');
   let [login_username, setInput_login_username] = useState('');
   let [login_password, setInput_login_password] = useState('');
   let [signup_username, setInput_signup_username] = useState('');
@@ -45,10 +46,10 @@ function Login() {
 
   function login() {
     if (login_username == "") {
-      setMessage('username is empty');
+      set_login_msg('username is empty');
     }
     else if (login_password == "") {
-      setMessage('password is empty');
+      set_login_msg('password is empty');
     }
     else {
       fetch('http://localhost:3030/api/login', {
@@ -64,7 +65,7 @@ function Login() {
         .then(response => response.json())
         .then(data => {
           if (data.error) {
-            setMessage(data.error.message);
+            set_login_msg(data.error.message);
           }
           else {
             setCookie('user_type', data.type, { path: '/', expires: addMonths(new Date(), 1) });
@@ -74,7 +75,7 @@ function Login() {
               setCookie('user_email', data.user.email, { path: '/', expires: addMonths(new Date(), 1) });
               setCookie('user_phone', data.user.mobile, { path: '/', expires: addMonths(new Date(), 1) });
             }
-            else{
+            else {
               setCookie('user_id', data.seller._id, { path: '/', expires: addMonths(new Date(), 1) });
               setCookie('user_name', data.seller.name, { path: '/', expires: addMonths(new Date(), 1) });
               setCookie('user_email', data.seller.email, { path: '/', expires: addMonths(new Date(), 1) });
@@ -88,25 +89,25 @@ function Login() {
 
   function signup() {
     if (signup_username == "") {
-      setMessage('username is empty');
+      set_signup_msg('username is empty');
     }
     else if (signup_password == "") {
-      setMessage('password is empty');
+      set_signup_msg('password is empty');
     }
     else if (!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(signup_password))) {
-      setMessage('password must have 8 characters with at least one number, one lowercase letter and one uppercase letter');
+      set_signup_msg('password must have 8 characters with at least one number, one lowercase letter and one uppercase letter');
     }
     else if (signup_email == "") {
-      setMessage('email is empty');
+      set_signup_msg('email is empty');
     }
     else if (!(/^\S+@\S+\.\S+$/.test(signup_email))) {
-      setMessage('email is not correct');
+      set_signup_msg('email is not correct');
     }
     else if (signup_name == "") {
-      setMessage('name is empty');
+      set_signup_msg('name is empty');
     }
     else if (signup_mobile == "") {
-      setMessage('mobile is empty');
+      set_signup_msg('mobile is empty');
     }
     else if (signup_type == 'user') {
       fetch('http://localhost:3030/api/signup_customer', {
@@ -125,10 +126,10 @@ function Login() {
         .then(response => response.json())
         .then(data => {
           if (data.error) {
-            setMessage(data.error.message);
+            set_signup_msg(data.error.message);
           }
           else {
-            setMessage(data.message);
+            set_signup_msg(data.message);
           }
         });
     }
@@ -149,21 +150,21 @@ function Login() {
         .then(response => response.json())
         .then(data => {
           if (data.error) {
-            setMessage(data.error.message);
+            set_signup_msg(data.error.message);
           }
           else {
-            setMessage(data.message);
+            set_signup_msg(data.message);
           }
         });
     }
   }
 
-  function toggle_login_pass(){
+  function toggle_login_pass() {
     var temp = is_shown_login;
     set_is_shown_login(!temp);
   }
 
-  function toggle_signup_pass(){
+  function toggle_signup_pass() {
     var temp = is_shown_signup;
     set_is_shown_signup(!temp);
   }
@@ -171,30 +172,37 @@ function Login() {
   return (
     <div className="cont">
       <Navbar />
-      <div className={class_name("login_cont")}>
-        <p>login:</p>
-        <p>username</p>
-        <input type="text" onInput={e => setInput_login_username(e.target.value)} />
-        <p>password</p>
-        <input type={is_shown_login ? "text" : "password"} onInput={e => setInput_login_password(e.target.value)} />
-        <button onClick={toggle_login_pass}>show/hide</button>
-        <button onClick={login}>login</button>
-        <p>sign up:</p>
-        <p>username</p>
-        <input type="text" onInput={e => setInput_signup_username(e.target.value)} />
-        <p>password</p>
-        <input type={is_shown_signup ? "text" : "password"} onInput={e => setInput_signup_password(e.target.value)} />
-        <button onClick={toggle_signup_pass}>show/hide</button>
-        <p>email</p>
-        <input type="text" onInput={e => setInput_signup_email(e.target.value)} />
-        <p>name</p>
-        <input type="text" onInput={e => setInput_signup_name(e.target.value)} />
-        <p>mobile</p>
-        <input type="text" onInput={e => setInput_signup_mobile(e.target.value)} />
-        <input type="radio" value="user" name="signup_type" checked={signup_type == 'user'} onClick={() => setInput_signup_type('user')} /> User
-        <input type="radio" value="seller" name="signup_type" checked={signup_type == 'seller'} onClick={() => setInput_signup_type('seller')} /> Seller
-        <button onClick={signup}>signup</button>
-        <h1>{message}</h1>
+      <div className={class_name('cont_cont')}>
+        <div className={class_name("login_cont")}>
+          <h1 className={class_name('login_header')}>Login</h1>
+          <p className={class_name('login_username_label')}>username</p>
+          <input className={class_name('login_username_input')} type="text" onInput={e => setInput_login_username(e.target.value)} />
+          <p className={class_name('login_password_label')}>password</p>
+          <input className={class_name('login_password_input')} type={is_shown_login ? "text" : "password"} onInput={e => setInput_login_password(e.target.value)} />
+          <button className={class_name('login_password_btn')} onClick={toggle_login_pass}>show/hide</button>
+          <button className={class_name('login_btn')} onClick={login}>login</button>
+          <h1 className={class_name('login_msg')}>{login_message}</h1>
+        </div>
+        <div className={class_name("signup_cont")}>
+          <h1 className={class_name('signup_header')}>Sign up</h1>
+          <p className={class_name('signup_username_label')}>username</p>
+          <input className={class_name('signup_username_input')} type="text" onInput={e => setInput_signup_username(e.target.value)} />
+          <p className={class_name('signup_password_label')}>password</p>
+          <input className={class_name('signup_password_input')} type={is_shown_signup ? "text" : "password"} onInput={e => setInput_signup_password(e.target.value)} />
+          <button className={class_name('signup_password_btn')} onClick={toggle_signup_pass}>show/hide</button>
+          <p className={class_name('signup_email_label')}>email</p>
+          <input className={class_name('signup_email_linput')} type="text" onInput={e => setInput_signup_email(e.target.value)} />
+          <p className={class_name('signup_name_label')}>name</p>
+          <input className={class_name('signup_name_ipnut')} type="text" onInput={e => setInput_signup_name(e.target.value)} />
+          <p className={class_name('signup_mobile_label')}>mobile</p>
+          <input className={class_name('signup_mobile_input')} type="text" onInput={e => setInput_signup_mobile(e.target.value)} />
+          <div className={class_name('signup_radio_cont')}>
+            <input type="radio" value="user" name="signup_type" checked={signup_type == 'user'} onClick={() => setInput_signup_type('user')} /> User
+            <input type="radio" value="seller" name="signup_type" checked={signup_type == 'seller'} onClick={() => setInput_signup_type('seller')} /> Seller
+          </div>
+          <button className={class_name('signup_btn')} onClick={signup}>signup</button>
+          <h1 className={class_name('signup_msg')}>{signup_message}</h1>
+        </div>
       </div>
     </div>
   );
