@@ -55,8 +55,8 @@ function Products_item(props) {
     if(current_user_type == "user"){
       return (
         <div>
-          <button onClick={add_to_fav}>add to fav</button>
-          <button onClick={remove_fav}>remove fav</button>
+          <button className={class_name("prods_item_fav")} onClick={add_to_fav}>add to fav</button>
+          <button className={class_name("prods_item_unfav")} onClick={remove_fav}>remove fav</button>
         </div>
       );
     }
@@ -65,7 +65,7 @@ function Products_item(props) {
 
   return (
     <div className={class_name("prods_item_cont")}>
-      <Link to="/product" state={props.data}><p key={props.data.name}>{props.data.name}</p></Link>
+      <Link className={class_name("prods_item_link")} to="/product" state={props.data}>{props.data.name}</Link>
       {for_user()}
     </div>
   );

@@ -1,17 +1,107 @@
-.prods_cont{
-    width: 100%;
-    height: 90%;
-  }
-  .prods_cont_light{
-    background-color: white;
-  }
-  .prods_cont_light *{
-    color: black;
-  }
-  .prods_cont_dark{
-    background-color: black;
-  }
-  .prods_cont_dark *{
-    color: white;
-  }
-  
+.prods_cont {
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 2fr 1fr 1fr 1fr 10fr;
+  align-items: center;
+  justify-items: center;
+}
+.prods_cont_light {
+  background-color: white;
+}
+.prods_cont_dark {
+  background-color: black;
+}
+
+.prods_header {
+  font-style: italic;
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 3;
+}
+.prods_header_light{
+  color: black;
+}
+.prods_header_dark{
+  color: white;
+}
+
+.prods_search_cont {
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 3;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.prods_search_in{
+  height: 51%;
+  font-size: 200%;
+  border-radius: 20px 0px 0px 20px;
+}
+.prods_search_in_light{
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+}
+.prods_search_in_dark{
+  border: 2px solid white;
+  background-color: black;
+  color: white;
+}
+
+.prods_search_btn{
+  height: 60%;
+  font-size: 200%;
+  border: none;
+  border-radius: 0px 20px 20px 0px;
+  text-decoration: none;
+  background-color: grey;
+  cursor: pointer;
+}
+.prods_search_btn_light{
+  color: white;
+}
+.prods_search_btn_light:hover{
+  background-color: rgb(85, 85, 85);
+}
+.prods_search_btn_dark{
+  color: white;
+}
+.prods_search_btn_dark:hover{
+  background-color: rgb(85, 85, 85);
+}
+
+.prods_rad_cont{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 50%;
+  justify-content: space-evenly;
+  align-items: baseline;
+}
+
+.prods_radio_lab{
+
+}
+.prods_radio_lab_light{
+  color: black;
+}
+.prods_radio_lab_dark{
+  color: white;
+}
+
+.prods_prod_cont{
+  grid-row: 6 / span 1;
+  grid-column: 1 / span 3;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
