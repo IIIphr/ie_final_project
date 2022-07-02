@@ -9,6 +9,8 @@ function Login() {
 
   let dispatch = useDispatch();
   let navigate = useNavigate();
+  const [is_shown_login, set_is_shown_login] = useState(false);
+  const [is_shown_signup, set_is_shown_signup] = useState(false);
   let theme = useSelector((state) => state.theme.data);
   let [message, setMessage] = useState('');
   let [login_username, setInput_login_username] = useState('');
@@ -156,6 +158,16 @@ function Login() {
     }
   }
 
+  function toggle_login_pass(){
+    var temp = is_shown_login;
+    set_is_shown_login(!temp);
+  }
+
+  function toggle_signup_pass(){
+    var temp = is_shown_signup;
+    set_is_shown_signup(!temp);
+  }
+
   return (
     <div className="cont">
       <Navbar />
@@ -164,13 +176,15 @@ function Login() {
         <p>username</p>
         <input type="text" onInput={e => setInput_login_username(e.target.value)} />
         <p>password</p>
-        <input type="text" onInput={e => setInput_login_password(e.target.value)} />
+        <input type={is_shown_login ? "text" : "password"} onInput={e => setInput_login_password(e.target.value)} />
+        <button onClick={toggle_login_pass}>show/hide</button>
         <button onClick={login}>login</button>
         <p>sign up:</p>
         <p>username</p>
         <input type="text" onInput={e => setInput_signup_username(e.target.value)} />
         <p>password</p>
-        <input type="text" onInput={e => setInput_signup_password(e.target.value)} />
+        <input type={is_shown_signup ? "text" : "password"} onInput={e => setInput_signup_password(e.target.value)} />
+        <button onClick={toggle_signup_pass}>show/hide</button>
         <p>email</p>
         <input type="text" onInput={e => setInput_signup_email(e.target.value)} />
         <p>name</p>
