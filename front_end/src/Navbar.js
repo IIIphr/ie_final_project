@@ -44,13 +44,6 @@ function Navbar() {
     <div className={class_name("navbar")}>
       <Link to="/">TOROB</Link>
       <Link to="/products_loader">all products</Link>
-      <div className={class_name("categories_cont")}>
-        <p>categories</p>
-        <div className={class_name("categories_drop")}>
-          <p>test</p>
-          <p>test_2</p>
-        </div>
-      </div>
       {user_section()}
       <button onClick={change_theme}>change theme</button>
     </div>
