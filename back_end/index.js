@@ -264,6 +264,7 @@ app.post('/api/report', async function (req, res) {
         sid: sid,
         reason: report_type
     });
+    report.save();
     res.status(200).send({
         code: 200,
         message: "report created successfully"
@@ -543,7 +544,7 @@ app.post('/api/user/reports', async function (req, res) {
         });
         return;
     }
-    const reports = await Report.find({ sid: uid });
+    const reports = await Report.find({ sid: sid });
 
     const shop = await Shop.findOne({ _id: sid });
     const result = [];

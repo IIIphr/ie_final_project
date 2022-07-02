@@ -91,7 +91,7 @@ function Product() {
         {
           (state.shops || []).map(record => {
             i++;
-            return <Product_shop_item key={record._id} data={record} price={state.prices[i]} link={state.links[i]}/>;
+            return <Product_shop_item key={record._id} data={record} price={state.prices[i]} link={state.links[i]} pid={state.pid}/>;
           })
         }
       </div>

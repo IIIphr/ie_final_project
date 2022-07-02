@@ -16,11 +16,36 @@ function Product_shop_item(props) {
     return name + " " + name + "_" + theme;
   }
 
+  function report(type) {
+    fetch('http://localhost:3030/api/report', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        pid: props.pid,
+        sid: props.data._id,
+        report_type: type
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          console.log(data.error.message);
+        }
+        else {
+          console.log(data.message);
+        }
+      });
+  }
+
   return (
     <div className={class_name("prod_shop_item_cont")}>
       <p>link: {props.link}</p>
       <p>price: {props.price}</p>
       <p>name: {props.data.name}</p>
+      <button onClick={() => report(1)}>report type 1</button>
+      <button onClick={() => report(2)}>report type 2</button>
     </div>
   );
 }
