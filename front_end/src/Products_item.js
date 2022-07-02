@@ -11,6 +11,7 @@ function Products_item(props) {
   let dispatch = useDispatch();
   let theme = useSelector((state) => state.theme.data);
   let current_user_id = useSelector((state) => state.user.user_id);
+  let current_user_type = useSelector((state) => state.user.user_type);
 
   function class_name(name) {
     return name + " " + name + "_" + theme;
@@ -33,10 +34,17 @@ function Products_item(props) {
       });
   }
 
+  function for_user(){
+    if(current_user_type == "user"){
+      return (<button onClick={add_to_fav}>add to fav</button>);
+    }
+    return null;
+  }
+
   return (
     <div className={class_name("prods_item_cont")}>
       <Link to="/product" state={props.data}><p key={props.data.name}>{props.data.name}</p></Link>
-      <button onClick={add_to_fav}>add to fav</button>
+      {for_user()}
     </div>
   );
 }

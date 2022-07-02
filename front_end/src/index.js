@@ -15,7 +15,7 @@ import Shops from './Shops';
 import Shop from './Shop';
 import Add_shop from './Add_shop';
 import Add_new_prod from './Add_new_prod';
-//import Add_existing_prod from './Add_existing_prod';
+import Add_existing_prod from './Add_existing_prod';
 import { CookiesProvider } from 'react-cookie';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -34,7 +34,7 @@ root.render(
           <Route path="/shop" element={<Shop />} />
           <Route path="/add_shop" element={<Add_shop />} />
           <Route path="/add_new_prod" element={<Add_new_prod />} />
-          {/* <Route path="/add_existing_prod" element={<Add_existing_prod />} /> */}
+          <Route path="/add_existing_prod" element={<Add_existing_prod />} />
         </Routes>
       </BrowserRouter>
     </Provider>
