@@ -41,11 +41,11 @@ function Product_shop_item(props) {
 
   return (
     <div className={class_name("prod_shop_item_cont")}>
-      <p>link: {props.link}</p>
-      <p>price: {props.price}</p>
-      <p>name: {props.data.name}</p>
-      <button onClick={() => report(1)}>report type 1</button>
-      <button onClick={() => report(2)}>report type 2</button>
+      <p className={class_name("prod_shop_item_name")}>{props.data.name}</p>
+      <p className={class_name("prod_shop_item_name")}>{props.price}</p>
+      <p className={class_name("prod_shop_item_name")}>{props.link}</p>
+      <button className={class_name('prod_shop_item_btn')} onClick={() => report(1)}>report type 1</button>
+      <button className={class_name('prod_shop_item_btn')} onClick={() => report(2)}>report type 2</button>
     </div>
   );
 }

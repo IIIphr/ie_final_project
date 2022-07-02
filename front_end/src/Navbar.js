@@ -42,7 +42,7 @@ function Navbar() {
 
   return (
     <div className={class_name("navbar")}>
-      <Link className={class_name('nav_btn')} to="/">TOROB</Link>
+      <Link className={class_name('nav_btn')} to="/">TOROBCHE</Link>
       <Link className={class_name('nav_btn')} to="/products_loader">all products</Link>
       {user_section()}
       <button className={class_name('nav_btn')} onClick={change_theme}>change theme</button>

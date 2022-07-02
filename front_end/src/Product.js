@@ -14,22 +14,8 @@ function Product() {
   const { state } = useLocation();
   let dispatch = useDispatch();
   let navigate = useNavigate();
-  let [input, setInput] = useState('');
-  let [categories, set_cat] = useState([]);
-  let [brands, set_brand] = useState([]);
-  let [numbers, set_number] = useState([]);
   let current_user_id = useSelector((state) => state.user.user_id);
   const [cookies, setCookie] = useCookies(['user_id', 'user_type', 'theme', 'user_name']);
-  const brand_list = [
-    'samsung', 'shiaomi', 'apple',
-    'samsung', 'shiaomi', 'apple',
-    'lenovo', 'asus', 'apple'
-  ];
-  const category_list = [
-    'mobile', 'mobile', 'mobile',
-    'tablet', 'tablet', 'tablet',
-    'laptop', 'laptop', 'laptop'
-  ];
 
   useEffect(() => {
     var temp = false;
@@ -56,44 +42,32 @@ function Product() {
     return name + " " + name + "_" + theme;
   }
 
-  function search() {
-    navigate("/products_loader", { state: { input: input, categories: categories, brands: brands } });
-  }
-
-  function check_changed(e) {
-    var temp_index = numbers.indexOf(e.target.value);
-    if (temp_index == -1) {
-      set_number([e.target.value, ...numbers]);
-      set_brand([brand_list[e.target.value], ...brands]);
-      set_cat([category_list[e.target.value], ...categories]);
-    }
-    else {
-      var temp_number = numbers;
-      temp_number.splice(temp_index, 1);
-      set_number(temp_number);
-      var temp_brand = brands;
-      temp_brand.splice(temp_index, 1);
-      set_brand(temp_brand);
-      var temp_cat = categories;
-      temp_cat.splice(temp_index, 1);
-      set_cat(temp_cat);
-    }
-  }
-
   var i = -1;
 
   return (
     <div className="cont">
       <Navbar />
       <div className={class_name("product_cont")}>
-        <p>product page</p>
-        <p>name: {state.name}</p>
-        {
-          (state.shops || []).map(record => {
-            i++;
-            return <Product_shop_item key={record._id} data={record} price={state.prices[i]} link={state.links[i]} pid={state.pid}/>;
-          })
-        }
+        <h3 className={class_name("product_name")}>{state.name + "(" + state.category + " " + state.type + ")"}</h3>
+        <p className={class_name("product_name")}>{"Country: " + state.country}</p>
+        <p className={class_name("product_name")}>{"Material: " + state.material}</p>
+        <p className={class_name("product_name")}>{"Size: " + state.size}</p>
+        <p className={class_name("product_name")}>{"Weight: " + state.weight}</p>
+        <div className={class_name("product_shops_cont")}>
+          <div className={class_name("prod_shop_item_cont")}>
+            <h4 className={class_name("prod_shop_item_name")}>shop name</h4>
+            <h4 className={class_name("prod_shop_item_name")}>price</h4>
+            <h4 className={class_name("prod_shop_item_name")}>link</h4>
+            <h4 className={class_name("prod_shop_item_name")}>report price</h4>
+            <h4 className={class_name("prod_shop_item_name")}>report product</h4>
+          </div>
+          {
+            (state.shops || []).map(record => {
+              i++;
+              return <Product_shop_item key={record._id} data={record} price={state.prices[i]} link={state.links[i]} pid={state.pid} />;
+            })
+          }
+        </div>
       </div>
     </div>
   );

@@ -1,16 +1,34 @@
 .product_cont{
   width: 100%;
   height: 90%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 8fr;
+  align-content: stretch;
+  align-items: center;
+  justify-items: center;
 }
 .product_cont_light{
   background-color: white;
 }
-.product_cont_light *{
-  color: black;
-}
 .product_cont_dark{
   background-color: black;
 }
-.product_cont_dark *{
+
+.product_name{
+
+}
+.product_name_light{
+  color: black;
+}
+.product_name_dark{
   color: white;
+}
+
+.product_shops_cont{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
 }

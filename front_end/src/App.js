@@ -84,7 +84,7 @@ function App() {
     <div className="cont">
       <Navbar />
       <div className={class_name("app_cont")}>
-        <h1 className={class_name('app_header')}>Welcome to TOROB!</h1>
+        <h1 className={class_name('app_header')}>Welcome to TOROBCHE!</h1>
         <div className={class_name("app_search_cont")}>
           <input className={class_name('app_search_in')} type="text" onInput={e => setInput(e.target.value)} />
           <button className={class_name('app_search_btn')} onClick={search}>SEARCH</button>
