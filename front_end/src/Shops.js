@@ -39,7 +39,6 @@ function Shops() {
       .then(response => response.json())
       .then(data_reports => {
         if (! data_reports.error) {
-          console.log(data_reports);
           navigate("/shop", { state: {data: record, reports: data_reports.data}});
         }
       });
