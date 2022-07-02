@@ -2,7 +2,7 @@ import './Shop.css';
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from './Navbar';
 import { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 import { change_id, change_type, change_name } from './userSlice';
 import { change } from './themeSlice';
@@ -30,7 +30,9 @@ function Shop() {
       <Navbar />
       <div className={class_name("Shop_cont")}>
         <p>Shop page</p>
-        <p>{data.name}</p>
+        <p>name: {data.name}</p>
+        <Link to="/add_new_prod" state={data}><p>add new product</p></Link>
+        <Link to="/add_existing_prod" state={data}><p>add existing product</p></Link>
         {
           (reports || []).map(record => {
             return <p key={record.pid +" "+ record.sid}>{record.Number}</p>

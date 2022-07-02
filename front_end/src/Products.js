@@ -18,8 +18,8 @@ function Products() {
     let [numbers, set_number] = useState([]);
     const { state } = useLocation();
     const brand_list= [
-        'samsung', 'shiaomi', 'apple',
-        'samsung', 'shiaomi', 'apple',
+        'samsung', 'xiaomi', 'apple',
+        'samsung', 'xiaomi', 'apple',
         'lenovo', 'asus', 'apple'
       ];
       const category_list= [
@@ -68,10 +68,10 @@ function Products() {
                 <input type="text" onInput={e => setInput(e.target.value)} />
                 <button onClick={search}>SEARCH</button>
                 <input onChange={check_changed} type="checkbox" value="0" /> samsung mobile <br />
-                <input onChange={check_changed} type="checkbox" value="1" /> shiaomi mobile <br />
+                <input onChange={check_changed} type="checkbox" value="1" /> xiaomi mobile <br />
                 <input onChange={check_changed} type="checkbox" value="2" /> apple mobile <br />
                 <input onChange={check_changed} type="checkbox" value="3" /> samsung tablet <br />
-                <input onChange={check_changed} type="checkbox" value="4" /> shiaomi tablet <br />
+                <input onChange={check_changed} type="checkbox" value="4" /> xiaomi tablet <br />
                 <input onChange={check_changed} type="checkbox" value="5" /> apple tablet <br />
                 <input onChange={check_changed} type="checkbox" value="6" /> lenovo laptop <br />
                 <input onChange={check_changed} type="checkbox" value="7" /> asus laptop <br />

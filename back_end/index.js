@@ -37,7 +37,7 @@ const ProductSchema = new mongoose.Schema({
     country: String,
     material: String,
     size: String,
-    price: [ObjectId],
+    price: [Number],
     link: [String],
     shops: [ObjectId]
 });
@@ -66,7 +66,7 @@ app.post('/api/search', async function (req, res) {
         for (let i = 0; i < products.length; i++) {
             var shops = [];
             for (const sid of products[i]['shops']) {
-                var shop = Shop.find({ _id: sid });
+                var shop = await Shop.find({ _id: sid });
                 shops.push(shop[0]);
             }
 

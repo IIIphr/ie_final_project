@@ -39,7 +39,7 @@ function Shops() {
       .then(response => response.json())
       .then(data_reports => {
         if (! data_reports.error) {
-          navigate("/shop", { state: {data: data, reports: data_reports.data}});
+          navigate("/shop", { state: {data: record, reports: data_reports.data}});
         }
       });
   }

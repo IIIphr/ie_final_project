@@ -80,7 +80,7 @@ function Product() {
     }
   }
 
-  var i = 0;
+  var i = -1;
 
   return (
     <div className="cont">
@@ -91,7 +91,7 @@ function Product() {
         {
           (state.shops || []).map(record => {
             i++;
-            return <Product_shop_item key={record._id} data={record} price={record.prices[i-1]} link={record.links[i-1]}/>;
+            return <Product_shop_item key={record._id} data={record} price={state.prices[i]} link={state.links[i]}/>;
           })
         }
       </div>

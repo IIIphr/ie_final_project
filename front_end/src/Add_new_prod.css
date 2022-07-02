@@ -1,0 +1,16 @@
+.add_new_prod_cont {
+    width: 100%;
+    height: 90%;
+}
+.add_new_prod_cont_light {
+    background-color: white;
+}
+.add_new_prod_cont_light * {
+    color: black;
+}
+.add_new_prod_cont_dark {
+    background-color: black;
+}
+.add_new_prod_cont_dark * {
+    color: white;
+}
