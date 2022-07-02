@@ -35,7 +35,7 @@ function Shop() {
         <Link to="/add_existing_prod" state={data}><p>add existing product</p></Link>
         {
           (reports || []).map(record => {
-            return <p key={record.pid +" "+ record.sid+" "+record.reason}>{record.reason}</p>
+            return <p key={record.pid +" "+ record.sid+" "+record.reason}>{"A report of product "+record.pid+", type: "+record.reason}</p>
           })
         }
       </div>
