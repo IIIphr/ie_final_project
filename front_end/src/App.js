@@ -84,18 +84,20 @@ function App() {
     <div className="cont">
       <Navbar />
       <div className={class_name("app_cont")}>
-        <p>main page</p>
-        <input type="text" onInput={e => setInput(e.target.value)} />
-        <button onClick={search}>SEARCH</button>
-        <input onChange={check_changed} type="checkbox" value="0"/> samsung mobile <br />
-        <input onChange={check_changed} type="checkbox" value="1"/> xiaomi mobile <br />
-        <input onChange={check_changed} type="checkbox" value="2"/> apple mobile <br />
-        <input onChange={check_changed} type="checkbox" value="3"/> samsung tablet <br />
-        <input onChange={check_changed} type="checkbox" value="4"/> xiaomi tablet <br />
-        <input onChange={check_changed} type="checkbox" value="5"/> apple tablet <br />
-        <input onChange={check_changed} type="checkbox" value="6"/> lenovo laptop <br />
-        <input onChange={check_changed} type="checkbox" value="7"/> asus laptop <br />
-        <input onChange={check_changed} type="checkbox" value="8"/> apple laptop <br />
+        <h1 className={class_name('app_header')}>Welcome to TOROB!</h1>
+        <div className={class_name("app_search_cont")}>
+          <input className={class_name('app_search_in')} type="text" onInput={e => setInput(e.target.value)} />
+          <button className={class_name('app_search_btn')} onClick={search}>SEARCH</button>
+        </div>
+        <div className={class_name('app_rad_cont')}><input className={class_name('app_rad_in')} onChange={check_changed} type="checkbox" value="0" id="0"/><label htmlFor='0' className={class_name('app_radio_lab')}>samsung mobile</label></div>
+        <div className={class_name('app_rad_cont')}><input className={class_name('app_rad_in')} onChange={check_changed} type="checkbox" value="1" id="1"/><label htmlFor='1' className={class_name('app_radio_lab')}>xiaomi mobile</label></div>
+        <div className={class_name('app_rad_cont')}><input className={class_name('app_rad_in')} onChange={check_changed} type="checkbox" value="2" id="2"/><label htmlFor='2' className={class_name('app_radio_lab')}>apple mobile</label></div>
+        <div className={class_name('app_rad_cont')}><input className={class_name('app_rad_in')} onChange={check_changed} type="checkbox" value="3" id="3"/><label htmlFor='3' className={class_name('app_radio_lab')}>samsung tablet</label></div>
+        <div className={class_name('app_rad_cont')}><input className={class_name('app_rad_in')} onChange={check_changed} type="checkbox" value="4" id="4"/><label htmlFor='4' className={class_name('app_radio_lab')}>xiaomi tablet</label></div>
+        <div className={class_name('app_rad_cont')}><input className={class_name('app_rad_in')} onChange={check_changed} type="checkbox" value="5" id="5"/><label htmlFor='5' className={class_name('app_radio_lab')}>apple tablet</label></div>
+        <div className={class_name('app_rad_cont')}><input className={class_name('app_rad_in')} onChange={check_changed} type="checkbox" value="6" id="6"/><label htmlFor='6' className={class_name('app_radio_lab')}>lenovo laptop</label></div>
+        <div className={class_name('app_rad_cont')}><input className={class_name('app_rad_in')} onChange={check_changed} type="checkbox" value="7" id="7"/><label htmlFor='7' className={class_name('app_radio_lab')}>asus laptop</label></div>
+        <div className={class_name('app_rad_cont')}><input className={class_name('app_rad_in')} onChange={check_changed} type="checkbox" value="8" id="8"/><label htmlFor='8' className={class_name('app_radio_lab')}>apple laptop</label></div>
       </div>
     </div>
   );
