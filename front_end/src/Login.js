@@ -181,7 +181,7 @@ function Login() {
           <input className={class_name('login_password_input')} type={is_shown_login ? "text" : "password"} onInput={e => setInput_login_password(e.target.value)} />
           <button className={class_name('login_password_btn')} onClick={toggle_login_pass}>show/hide</button>
           <button className={class_name('login_btn')} onClick={login}>login</button>
-          <h1 className={class_name('login_msg')}>{login_message}</h1>
+          <h3 className={class_name('login_msg')}>{login_message}</h3>
         </div>
         <div className={class_name("signup_cont")}>
           <h1 className={class_name('signup_header')}>Sign up</h1>
@@ -197,11 +197,11 @@ function Login() {
           <p className={class_name('signup_mobile_label')}>mobile</p>
           <input className={class_name('signup_mobile_input')} type="text" onInput={e => setInput_signup_mobile(e.target.value)} />
           <div className={class_name('signup_radio_cont')}>
-            <input type="radio" value="user" name="signup_type" checked={signup_type == 'user'} onClick={() => setInput_signup_type('user')} /> User
-            <input type="radio" value="seller" name="signup_type" checked={signup_type == 'seller'} onClick={() => setInput_signup_type('seller')} /> Seller
+            <input id='rad_user' type="radio" value="user" name="signup_type" checked={signup_type == 'user'} onClick={() => setInput_signup_type('user')} /><label htmlFor='rad_user'>User</label>
+            <input id='rad_seller' type="radio" value="seller" name="signup_type" checked={signup_type == 'seller'} onClick={() => setInput_signup_type('seller')} /><label htmlFor='rad_seller'>Seller</label>
           </div>
           <button className={class_name('signup_btn')} onClick={signup}>signup</button>
-          <h1 className={class_name('signup_msg')}>{signup_message}</h1>
+          <h3 className={class_name('signup_msg')}>{signup_message}</h3>
         </div>
       </div>
     </div>
