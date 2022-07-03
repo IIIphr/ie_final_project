@@ -1,17 +1,47 @@
-.shops_cont{
-    width: 100%;
-    height: 90%;
-  }
-  .shops_cont_light{
-    background-color: white;
-  }
-  .shops_cont_light *{
-    color: black;
-  }
-  .shops_cont_dark{
-    background-color: black;
-  }
-  .shops_cont_dark *{
-    color: white;
-  }
-  
+.shops_cont {
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-rows: 1fr 5fr;
+  justify-items: center;
+  align-items: center;
+}
+.shops_cont_light {
+  background-color: white;
+}
+.shops_cont_dark {
+  background-color: black;
+}
+
+.shops_cont_cont{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  width: 80%;
+}
+
+.shops_item{
+  margin-bottom: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  background-color: grey;
+  cursor: pointer;
+  text-align: center;
+}
+.shops_item_light{
+  color: white;
+}
+.shops_item_light:hover{
+  background-color: rgb(85, 85, 85);
+}
+.shops_item_dark{
+  color: white;
+}
+.shops_item_dark:hover{
+  background-color: rgb(85, 85, 85);
+}

@@ -1,16 +1,91 @@
 .add_shop_cont {
     width: 100%;
     height: 90%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
 }
 .add_shop_cont_light {
     background-color: white;
 }
-.add_shop_cont_light * {
-    color: black;
-}
 .add_shop_cont_dark {
     background-color: black;
 }
-.add_shop_cont_dark * {
+
+.add_shop_header{
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+}
+.add_shop_header_light{
+    color: black;
+}
+.add_shop_header_dark{
     color: white;
+}
+
+.add_shop_label{
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 1;
+}
+.add_shop_label_light{
+    color: black;
+}
+.add_shop_label_dark{
+    color: white;
+}
+
+.add_shop_msg{
+    grid-row: 5 / span 1;
+    grid-column: 1 / span 1;
+}
+.add_shop_msg_light{
+    color: black;
+}
+.add_shop_msg_dark{
+    color: white;
+}
+
+.add_shop_btn{
+    grid-row: 4 / span 1;
+    grid-column: 1 / span 1;
+    width: 50%;
+    height: 25%;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    background-color: grey;
+    cursor: pointer;
+}
+.add_shop_btn_light{
+    color: white;
+}
+.add_shop_btn_light:hover{
+    background-color: rgb(85, 85, 85);
+}
+.add_shop_btn_dark{
+    color: white;
+}
+.add_shop_btn_dark:hover{
+    background-color: rgb(85, 85, 85);
+}
+
+.add_shop_input{
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 1;
+    width: 50%;
+    border-radius: 20px 20px 20px 20px;
+    height: 25%;
+    text-align: center;
+}
+.add_shop_input_light{
+    border: 2px solid black;
+    color: black;
+    background-color: white;
+}
+.add_shop_input_dark{
+    border: 2px solid white;
+    color: white;
+    background-color: black;
 }

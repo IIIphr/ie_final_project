@@ -1,17 +1,109 @@
-.shop_cont{
-    width: 100%;
-    height: 90%;
-  }
-  .shop_cont_light{
-    background-color: white;
-  }
-  .shop_cont_light *{
-    color: black;
-  }
-  .shop_cont_dark{
-    background-color: black;
-  }
-  .shop_cont_dark *{
-    color: white;
-  }
-  
+.shop_cont {
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 3fr;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+.shop_cont_light {
+  background-color: white;
+}
+.shop_cont_dark {
+  background-color: black;
+}
+
+.shop_p_header{
+  grid-row: 1 / span 1;
+  grid-column: 1 / span 2;
+}
+.shop_p_header_light{
+  color: black;
+}
+.shop_p_header_dark{
+  color: white;
+}
+
+.shop_p_name{
+  grid-row: 2 / span 1;
+  grid-column: 1 / span 2;
+}
+.shop_p_name_light{
+  color: black;
+}
+.shop_p_name_dark{
+  color: white;
+}
+
+.shop_p_new{
+  grid-row: 3 / span 1;
+  grid-column: 1 / span 1;
+  width: 50%;
+  height: 25%;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  background-color: grey;
+  cursor: pointer;
+  text-align: center;
+}
+.shop_p_new_light{
+  color: white;
+}
+.shop_p_new_light:hover{
+  background-color: rgb(85, 85, 85);
+}
+.shop_p_new_dark{
+  color: white;
+}
+.shop_p_new_dark:hover{
+  background-color: rgb(85, 85, 85);
+}
+
+.shop_p_existing{
+  grid-row: 3 / span 1;
+  grid-column: 2 / span 1;
+  width: 50%;
+  height: 25%;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  background-color: grey;
+  cursor: pointer;
+  text-align: center;
+}
+.shop_p_existing_light{
+  color: white;
+}
+.shop_p_existing_light:hover{
+  background-color: rgb(85, 85, 85);
+}
+.shop_p_existing_dark{
+  color: white;
+}
+.shop_p_existing_dark:hover{
+  background-color: rgb(85, 85, 85);
+}
+
+.shop_p_reports{
+  grid-row: 4 / span 1;
+  grid-column: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  overflow-y: auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.shop_p_item{
+
+}
+.shop_p_item_light{
+  color: black;
+}
+.shop_p_item_dark{
+  color: white;
+}

@@ -57,11 +57,11 @@ function Add_shop() {
     <div className="cont">
       <Navbar />
       <div className={class_name("add_shop_cont")}>
-        <p>add shop page</p>
-        <p>name</p>
-        <input type="text" value={name} onInput={e => setInput_name(e.target.value)} />
-        <button onClick={add_s}>add</button>
-        <h1>{message}</h1>
+        <h2 className={class_name("add_shop_header")}>Add shop</h2>
+        <p className={class_name("add_shop_label")}>name</p>
+        <input className={class_name("add_shop_input")} type="text" value={name} onInput={e => setInput_name(e.target.value)} />
+        <button className={class_name("add_shop_btn")} onClick={add_s}>add</button>
+        <h3 className={class_name("add_shop_msg")}>{message}</h3>
       </div>
     </div>
   );

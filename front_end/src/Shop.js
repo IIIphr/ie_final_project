@@ -10,8 +10,8 @@ import { change } from './themeSlice';
 function Shop() {
 
   let theme = useSelector((state) => state.theme.data);
-  const {state} = useLocation();
-  const {data, reports} = state;
+  const { state } = useLocation();
+  const { data, reports } = state;
   let dispatch = useDispatch();
   let navigate = useNavigate();
   let [input, setInput] = useState('');
@@ -29,15 +29,17 @@ function Shop() {
     <div className="cont">
       <Navbar />
       <div className={class_name("shop_cont")}>
-        <p>Shop page</p>
-        <p>name: {data.name}</p>
-        <Link to="/add_new_prod" state={data}><p>add new product</p></Link>
-        <Link to="/add_existing_prod" state={data}><p>add existing product</p></Link>
-        {
-          (reports || []).map(record => {
-            return <p key={record.pid +" "+ record.sid+" "+record.reason}>{"A report of product "+record.pid+", type: "+record.reason}</p>
-          })
-        }
+        <h2 className={class_name("shop_p_header")}>Shop page</h2>
+        <p className={class_name("shop_p_name")}>name: {data.name}</p>
+        <Link className={class_name("shop_p_new")} to="/add_new_prod" state={data}><p>add new product</p></Link>
+        <Link className={class_name("shop_p_existing")} to="/add_existing_prod" state={data}><p>add existing product</p></Link>
+        <div className={class_name("shop_p_reports")}>
+          {
+            (reports || []).map(record => {
+              return <p className={class_name("shop_p_item")} key={record.pid + " " + record.sid + " " + record.reason}>{"A report of product " + record.pid + ", type: " + record.reason}</p>
+            })
+          }
+        </div>
       </div>
     </div>
   );

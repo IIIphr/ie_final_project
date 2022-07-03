@@ -38,8 +38,8 @@ function Shops() {
     })
       .then(response => response.json())
       .then(data_reports => {
-        if (! data_reports.error) {
-          navigate("/shop", { state: {data: record, reports: data_reports.data}});
+        if (!data_reports.error) {
+          navigate("/shop", { state: { data: record, reports: data_reports.data } });
         }
       });
   }
@@ -48,12 +48,14 @@ function Shops() {
     <div className="cont">
       <Navbar />
       <div className={class_name("shops_cont")}>
-        <p>shops page</p>
-        {
-          (data || []).map(record => {
-            return <button key={record.name} onClick={() => to_shop(record)}>{record.name}</button>;
-          })
-        }
+        <h2 className={class_name("shops_header")}>Shops</h2>
+        <div className={class_name("shops_cont_cont")}>
+          {
+            (data || []).map(record => {
+              return <button className={class_name("shops_item")} key={record.name} onClick={() => to_shop(record)}>{record.name}</button>;
+            })
+          }
+        </div>
       </div>
     </div>
   );
