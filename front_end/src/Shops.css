@@ -45,3 +45,7 @@
 .shops_item_dark:hover{
   background-color: rgb(85, 85, 85);
 }
+
+.shops_header{}
+.shops_header_light{color: black;}
+.shops_header_dark{color: white;}
