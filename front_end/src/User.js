@@ -44,6 +44,10 @@ function User() {
     removeCookie('user_email');
     removeCookie('user_phone');
     dispatch(change_id(-1));
+    dispatch(change_type(null));
+    dispatch(change_email(null));
+    dispatch(change_phone(null));
+    dispatch(change_name(null));
     navigate("/");
   }
 

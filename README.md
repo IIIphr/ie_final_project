@@ -14,3 +14,25 @@ This is the products page. You can press the grey buttons (which are the name of
 If you were logged in as a user (not a seller, which is logged in now. You can see it in the third part off navigation bar. And oh, we have dark and light themes too, the fourth button :D), the page would look like this:
 ![products page](user_products.png "Products page")
 Which has the favorite buttons.
+
+And you can explore the rest of the site and find out what is implemented here :) 
+
+Just a quick note. When you are adding a product to a shop, that is already registered in the site (the product), you can search (with the exact same logic of the main page) for the product and click the "set ID" button next to the product you want to add to your shop. Find the page yourself :D
+
+## Running the site locally
+
+You should have npm installed. We use MongoDB for this project, so you might as well have that :)
+
+the front_end and back_end folders are client and server applications, respectively. Go to each folder and run:
+
+`npm install`
+
+to install the dependencies. Then, for running the server, use:
+
+`node index.js`
+
+in the back_end folder. You can run the client side application by using:
+
+`npm start`
+
+in the front_end folder. Have fun with the site :D
