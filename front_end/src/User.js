@@ -112,55 +112,57 @@ function User() {
       });
   }
 
-  function for_seller_or_user() {
+  function for_seller() {
     if (current_user_type == "seller") {
       return (
-        <div>
-          <p>email</p>
-          <input type="text" value={email} onInput={e => setInput_email(e.target.value)} />
-          <p>name</p>
-          <input type="text" value={name} onInput={e => setInput_name(e.target.value)} />
-          <p>mobile</p>
-          <input type="text" value={mobile} onInput={e => setInput_mobile(e.target.value)} />
-          <button onClick={change_info}>change info</button>
-          <Link to="/add_shop"><p>add shop</p></Link>
-          <button onClick={to_shops}>shops</button>
+        <div className={class_name("seller_cont")}>
+          <p className={class_name("seller_email_label")}>email</p>
+          <input className={class_name("seller_email_input")} type="text" value={email} onInput={e => setInput_email(e.target.value)} />
+          <p className={class_name("seller_name_label")}>name</p>
+          <input className={class_name("seller_name_input")} type="text" value={name} onInput={e => setInput_name(e.target.value)} />
+          <p className={class_name("seller_mobile_label")}>mobile</p>
+          <input className={class_name("seller_mobile_input")} type="text" value={mobile} onInput={e => setInput_mobile(e.target.value)} />
+          <button className={class_name("seller_change_btn")} onClick={change_info}>change info</button>
+          <h3 className={class_name("seller_msg")}>{message}</h3>
+          <Link className={class_name("seller_add_btn")} to="/add_shop"><p>add shop</p></Link>
+          <button className={class_name("seller_shops_btn")} onClick={to_shops}>shops</button>
         </div>
       );
     }
     return null;
   }
 
-  function show_fav(){
+  function show_fav() {
     fetch('http://localhost:3030/api/user/favs', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          uid: current_user_id
-        })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        uid: current_user_id
       })
-        .then(response => response.json())
-        .then(data => {
-          set_fav_data(data);
-        });
+    })
+      .then(response => response.json())
+      .then(data => {
+        set_fav_data(data);
+      });
   }
 
   return (
     <div className="cont">
       <Navbar />
       <div className={class_name("user_cont")}>
-        <p>user page</p>
-        {for_seller_or_user()}
-        {current_user_type == "user" ? <button onClick={show_fav}>show fav</button> : null}
-        {
-          (fav_data || []).map(record => {
-            return <Products_item key={record._id} data={record} />;
-          })
-        }
-        <button onClick={logout}>logout</button>
-        <h1>{message}</h1>
+        <h2 className={class_name("user_header")}>User page</h2>
+        <button className={class_name("logout_btn")} onClick={logout}>logout</button>
+        {for_seller()}
+        {current_user_type == "user" ? <button className={class_name("user_btn")} onClick={show_fav}>show fav</button> : null}
+        {fav_data ? <div className={class_name("fav_cont")}>
+          {
+            (fav_data || []).map(record => {
+              return <Products_item key={record._id} data={record} />;
+            })
+          }
+        </div> : null}
       </div>
     </div>
   );

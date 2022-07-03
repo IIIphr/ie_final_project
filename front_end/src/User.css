@@ -1,16 +1,272 @@
 .user_cont {
     width: 100%;
     height: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 5fr 1fr 1fr 10fr;
+    align-items: center;
+    justify-items: center;
 }
 .user_cont_light {
     background-color: white;
 }
-.user_cont_light * {
-    color: black;
-}
 .user_cont_dark {
     background-color: black;
 }
-.user_cont_dark * {
+
+.user_header{
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 2;
+}
+.user_header_light{
+    color: black;
+}
+.user_header_dark{
+    color: white;
+}
+
+.user_btn{
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 2;
+    width: 50%;
+    height: 75%;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    background-color: grey;
+    cursor: pointer;
+}
+.user_btn_light{
+    color: white;
+}
+.user_btn_light:hover{
+    background-color: rgb(85, 85, 85);
+}
+.user_btn_dark{
+    color: white;
+}
+.user_btn_dark:hover{
+    background-color: rgb(85, 85, 85);
+}
+
+.fav_cont{
+    grid-row: 4 / span 1;
+    grid-column: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    overflow-y: auto;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout_btn{
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
+    width: 50%;
+    height: 75%;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    background-color: grey;
+    cursor: pointer;
+}
+.logout_btn_light{
+    color: white;
+}
+.logout_btn_light:hover{
+    background-color: rgb(85, 85, 85);
+}
+.logout_btn_dark{
+    color: white;
+}
+.logout_btn_dark:hover{
+    background-color: rgb(85, 85, 85);
+}
+
+.seller_cont{
+    grid-row: 3 / span 2;
+    grid-column: 1 / span 2;
+    height: 80%;
+    width: 50%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.seller_email_label{
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 2;
+}
+.seller_email_label_light{
+    color: black;
+}
+.seller_email_label_dark{
+    color: white;
+}
+
+.seller_name_label{
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
+}
+.seller_name_label_light{
+    color: black;
+}
+.seller_name_label_dark{
+    color: white;
+}
+
+.seller_mobile_label{
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 2;
+}
+.seller_mobile_label_light{
+    color: black;
+}
+.seller_mobile_label_dark{
+    color: white;
+}
+
+.seller_email_input{
+    grid-row: 1 / span 1;
+    grid-column: 3 / span 2;
+    width: 100%;
+    border-radius: 20px 20px 20px 20px;
+    height: 50%;
+    text-align: center;
+}
+.seller_email_input_light{
+    border: 2px solid black;
+    color: black;
+    background-color: white;
+}
+.seller_email_input_dark{
+    border: 2px solid white;
+    color: white;
+    background-color: black;
+}
+
+.seller_name_input{
+    grid-row: 2 / span 1;
+    grid-column: 3 / span 2;
+    width: 100%;
+    border-radius: 20px 20px 20px 20px;
+    height: 50%;
+    text-align: center;
+}
+.seller_name_input_light{
+    border: 2px solid black;
+    color: black;
+    background-color: white;
+}
+.seller_name_input_dark{
+    border: 2px solid white;
+    color: white;
+    background-color: black;
+}
+
+.seller_mobile_input{
+    grid-row: 3 / span 1;
+    grid-column: 3 / span 2;
+    width: 100%;
+    border-radius: 20px 20px 20px 20px;
+    height: 50%;
+    text-align: center;
+}
+.seller_mobile_input_light{
+    border: 2px solid black;
+    color: black;
+    background-color: white;
+}
+.seller_mobile_input_dark{
+    border: 2px solid white;
+    color: white;
+    background-color: black;
+}
+
+.seller_change_btn{
+    grid-row: 4 / span 1;
+    grid-column: 1 / span 4;
+    width: 100%;
+    height: 50%;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    background-color: grey;
+    cursor: pointer;
+}
+.seller_change_btn_light{
+    color: white;
+}
+.seller_change_btn_light:hover{
+    background-color: rgb(85, 85, 85);
+}
+.seller_change_btn_dark{
+    color: white;
+}
+.seller_change_btn_dark:hover{
+    background-color: rgb(85, 85, 85);
+}
+
+.seller_add_btn{
+    grid-row: 5 / span 1;
+    grid-column: 1 / span 2;
+    width: 100%;
+    height: 50%;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    background-color: grey;
+    cursor: pointer;
+    text-align: center;
+}
+.seller_add_btn_light{
+    color: white;
+}
+.seller_add_btn_light:hover{
+    background-color: rgb(85, 85, 85);
+}
+.seller_add_btn_dark{
+    color: white;
+}
+.seller_add_btn_dark:hover{
+    background-color: rgb(85, 85, 85);
+}
+
+.seller_shops_btn{
+    grid-row: 5 / span 1;
+    grid-column: 3 / span 2;
+    width: 100%;
+    height: 50%;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    background-color: grey;
+    cursor: pointer;
+}
+.seller_shops_btn_light{
+    color: white;
+}
+.seller_shops_btn_light:hover{
+    background-color: rgb(85, 85, 85);
+}
+.seller_shops_btn_dark{
+    color: white;
+}
+.seller_shops_btn_dark:hover{
+    background-color: rgb(85, 85, 85);
+}
+
+.seller_msg{
+    grid-row: 6 / span 1;
+    grid-column: 1 / span 4;
+}
+.seller_msg_light{
+    color: black;
+}
+.seller_msg_dark{
     color: white;
 }
